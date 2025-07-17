@@ -1,38 +1,244 @@
-.App {
-  text-align: center;
+:root {
+  --cursor-x: 0px;
+  --cursor-y: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.hero {
+  min-height: calc(100vh - calc(100px + 2 * var(--navbar-padding)) - 30px);
+  width: calc(100% - 2 * var(--navbar-padding));
+  background: #e0e0e0;
+  position: relative;
+  top: 0;
+  font-family: var(--default-font);
+  margin-top: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 0 var(--navbar-padding);
+  padding-top: calc(100px + 2 * var(--navbar-padding));
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  padding-bottom: 30px;
+  overflow: hidden;
+}
+
+.hero-left {
+  max-width: 60%;
+}
+
+.hero-left .heroTxt {
+  font-size: 3.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.heroBtns .getQuote {
+  background: var(--primary-color);
+  padding: 20px 24px;
+  font-family: var(--default-font);
+  color: white;
+  font-size: var(--visible-fontSize);
+  font-weight: 400;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.heroBtns .getQuote:hover {
+  background-color: darken(var(--primary-color), 10%);
+}
+
+
+.heroBtns .menuBtn {
+  background: white;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.heroBtns .menuBtn:hover {
+  background-color: var(--primary-color);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.heroBtns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.customerText {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #555;
+  font-size: var(--visible-fontSize);
+}
+
+.customerImages {
+  display: flex;
+  align-items: center;
+}
+
+.customerImages img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  margin-left: -10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.customerImages img:first-child {
+  margin-left: 0;
+  box-shadow: none;
+  filter: brightness(0.7);
+}
+
+.customerImages img:nth-child(2) {
+  filter: brightness(0.85);
+}
+
+.stacked-cards-container {
+  position: relative;
+  width: min(420px, 90vw);
+  height: 350px;
+  margin: auto;
+  perspective: 500px;
+}
+
+.stacked-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: none;
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  transform-origin: center;
+  background-color: #fff;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.containerTitle {
+  font-size: 1.3rem;
+  font-weight: 400;
+  display: flex;
+  gap: 10px;
+  margin: 40px 0;
+  width: 100%;
+  color: black;
+}
+
+[data-theme="dark"] .containerTitle {
+  color: white;
+}
+
+.containerTitle span {
+  color: var(--logo-color);
+  font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  .section-header h1 {
+    font-size: 2rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .section-header p {
+    font-size: 0.9rem;
+  }
+
+  .door-container {
+    width: 200px;
+    height: 300px;
+    border-radius: 100px 100px 10px 10px;
+  }
+
+  .scroll-button {
+    bottom: 25px;
+  }
+
+  .scroll-text {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+    flex-direction: column;
+    padding-top: calc(80px + var(--navbar-padding));
+
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    margin: 20px 0;
+    min-height: 480px;
+
+  }
+
+  .hero-left .heroTxt {
+    font-size: 2.5rem;
+    width: 100%;
+
+
+  }
+
+  .hero-left .heroTxt br {
+    display: none;
+
+  }
+
+  .heroBtns {
+    justify-content: center;
+  }
+
+  .stacked-cards-container {
+    width: min(350px, 80vw);
+
+    height: 300px;
+
+  }
+
+  .services {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    background-color: #000;
+    z-index: 20;
+    position: relative;
+    width: 100%;
+  }
+
+
+
+}
+
+@media (max-width: 480px) {
+  .hero-left .heroTxt {
+    font-size: 2rem;
+  }
+
+  .heroBtns {
+    flex-direction: column;
+
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+
   }
 }
