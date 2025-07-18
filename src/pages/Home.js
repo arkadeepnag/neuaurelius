@@ -10,6 +10,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Cpu, Target, Play, ArrowUpRight } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
+// 1. Define the image paths used in this component
+const customerImages = [
+    "/images/customers/1.png",
+    "/images/customers/2.png",
+    "/images/customers/3.png"
+];
+const workImages = [
+    "/images/work1.png",
+    "/images/work2.png",
+    "/images/work3.png"
+];
+
 function Home() {
     const cardsRef = useRef([]);
     const servicesSectionRef = useRef(null);
@@ -20,10 +32,18 @@ function Home() {
     const newSectionRef = useRef(null);
 
     useLayoutEffect(() => {
+        // 2. Add the preloading logic
+        const imagesToPreload = [...customerImages, ...workImages];
+        imagesToPreload.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+
         ScrollTrigger.refresh();
 
         // Card animations (unchanged)
         cardsRef.current.forEach((card, i) => {
+            // ... all your existing GSAP animation code remains here
             gsap.set(card, {
                 y: -i * 60,
                 x: i * 20,
@@ -117,9 +137,10 @@ function Home() {
                 <div className="hero-left">
                     <div className="customerText">
                         <div className="customerImages">
-                            <img src="/images/customers/1.png" alt="customer 1" />
-                            <img src="/images/customers/2.png" alt="customer 2" />
-                            <img src="/images/customers/3.png" alt="customer 3" />
+                            {/* 3. Use the predefined image arrays */}
+                            {customerImages.map((src, i) => (
+                                <img key={i} src={src} alt={`customer ${i + 1}`} />
+                            ))}
                         </div>
                         <span>Join around 400+ happy clients</span>
                     </div>
@@ -132,7 +153,7 @@ function Home() {
                     </div>
                 </div>
                 <div className="stacked-cards-container">
-                    {["/images/work1.png", "/images/work2.png", "/images/work3.png"].map((src, i) => (
+                    {workImages.map((src, i) => (
                         <img
                             key={i}
                             ref={(el) => (cardsRef.current[i] = el)}
