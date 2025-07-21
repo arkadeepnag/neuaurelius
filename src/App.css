@@ -4,25 +4,40 @@
 }
 
 .hero {
-  min-height: calc(100vh - calc(100px + 2 * var(--navbar-padding)) - 30px);
-  width: calc(100% - 2 * var(--navbar-padding));
-  background: #e0e0e0;
-  position: relative;
-  top: 0;
+  background: #000;
+  color: #fff;
+  padding: 40px 20px;
   font-family: var(--default-font);
-  margin-top: 0;
+  width: calc(100% - 2 * var(--navbar-padding));
+  padding: calc(2 * var(--navbar-padding)) var(--navbar-padding);
+  min-height: 80vh;
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 0 var(--navbar-padding);
-  padding-top: calc(100px + 2 * var(--navbar-padding));
-  flex-wrap: wrap-reverse;
-  justify-content: space-between;
-  padding-bottom: 30px;
-  overflow: hidden;
+  justify-content: start;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.61) 0%, #000000d4 100%);
+}
+
+@media (max-width: 767px) {
+  .hero::before {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.851) 0%, #000000d4 100%);
+  }
 }
 
 .hero-left {
   max-width: 60%;
+  z-index: 1;
 }
 
 .hero-left .heroTxt {
@@ -32,10 +47,10 @@
 }
 
 .heroBtns .getQuote {
-  background: var(--primary-color);
+  background: white;
   padding: 20px 24px;
   font-family: var(--default-font);
-  color: white;
+  color: var(--primary-color);
   font-size: var(--visible-fontSize);
   font-weight: 400;
   border-radius: 50px;
@@ -45,7 +60,8 @@
 }
 
 .heroBtns .getQuote:hover {
-  background-color: darken(var(--primary-color), 10%);
+  background-color: var(--primary-color);
+  color: white;
 }
 
 

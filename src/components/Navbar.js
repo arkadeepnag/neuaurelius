@@ -8,10 +8,15 @@ function Navbar() {
                 <h1 className="navLogo">neuaurelius</h1>
             </div>
             <div className="navRight">
+                <div className="navlinks">
+                    <a href="#">Services</a>
+                    <a href="#">Testimonials</a>
+                    <a href="#">Support</a>
 
-                {/* <div className="navBtns">
+                </div>
+                <div className="navBtns">
                     <button className="getQuote menuBtn">Menu <span><BiSolidCircle /><BiSolidCircle /></span></button>
-                </div> */}
+                </div>
             </div>
         </nav>
     );

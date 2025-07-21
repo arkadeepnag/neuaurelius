@@ -11,6 +11,7 @@
     top: 0;
     left: 0;
     z-index: 999;
+    color: white;
 }
 
 
@@ -27,8 +28,9 @@
 .navlinks a {
     font-size: var(--visible-fontSize);
     text-decoration: none;
-    color: var(--primary-color);
+    color: white;
     font-weight: 500;
+    font-size: 1rem;
 }
 
 .navBtns .getQuote {
@@ -45,7 +47,7 @@
 .navBtns .menuBtn {
     background: white;
     color: var(--primary-color);
-    display: flex;
+    display: none;
     align-items: center;
     gap: 10px;
 }
@@ -54,4 +56,14 @@
     font-size: 4px;
     display: flex;
     gap: 2px;
+}
+
+@media (max-width: 768px) {
+    .navlinks {
+        display: none;
+    }
+
+    .navBtns .menuBtn {
+        display: flex;
+    }
 }

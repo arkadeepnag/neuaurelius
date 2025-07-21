@@ -1,6 +1,10 @@
 @import "./colors/main.css";
 @import "./fonts/main.css";
 
+* {
+  user-select: none;
+}
+
 body {
   margin: 0;
   overflow-x: hidden;
@@ -13,4 +17,9 @@ body {
   overflow: hidden;
   /* or visible if needed */
   z-index: 0;
+}
+
+textarea {
+  font-family: var(--default-font);
+  resize: none;
 }
