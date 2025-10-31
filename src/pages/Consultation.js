@@ -4,12 +4,26 @@ import emailjs from 'emailjs-com';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Consultation.css';
 import { Shield, Code, Server, Bot, Cloud } from 'lucide-react';
+import { useLayoutEffect } from 'react';
 
 const SERVICE_ID = 'service_21lzs9l';
 const TEMPLATE_ID = 'template_ot6yk3t';
 const PUBLIC_KEY = 'w2khkFc0T5KwTWRwl';
 
 const Consultation = () => {
+    useLayoutEffect(() => {
+        // Preload consultation background image
+        const img = new Image();
+        img.src = '/images/consultation.jpg';
+
+        // If you use any scroll-based animation libraries, refresh here
+        // Example: window.ScrollTrigger?.refresh();
+
+        // Cleanup if needed
+        return () => {
+            // No cleanup needed for image preloading
+        };
+    }, []);
     const [selectedService, setSelectedService] = useState('Cybersecurity');
     const [startDate, setStartDate] = useState(new Date());
     const [loading, setLoading] = useState(false);
@@ -154,6 +168,7 @@ END:VCALENDAR`;
                                     selected={startDate}
                                     onChange={(date) => setStartDate(date)}
                                     className="form-input"
+                                    dateFormat="dd/MM/yyyy"
                                 />
                             </div>
                         </div>

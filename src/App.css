@@ -14,7 +14,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
 }
 
 .hero::before {
@@ -41,7 +41,8 @@
 }
 
 .hero-left .heroTxt {
-  font-size: 3.2rem;
+  font-size: 4rem;
+  text-align: center;
   margin: 0;
   padding: 0;
 }
@@ -193,6 +194,9 @@
     min-height: 100vh;
     flex-direction: column;
     padding-top: calc(80px + var(--navbar-padding));
+    padding-left: 20px;
+    padding-right: 20px;
+    width: calc(100% - 40px);
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -210,9 +214,8 @@
   }
 
   .hero-left .heroTxt {
-    font-size: 3rem;
-    width: 100%;
-    text-align: left;
+    font-size: 2.8rem;
+    text-align: center;
 
 
   }
@@ -226,6 +229,7 @@
     flex-direction: row;
     justify-content: flex-start;
     width: 100%;
+    margin-top: 100%;
 
   }
 

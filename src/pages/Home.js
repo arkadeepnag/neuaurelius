@@ -21,7 +21,15 @@ const workImages = [
     "/images/work2.png",
     "/images/work3.png"
 ];
-
+const serviceImages = [
+    "/images/hero.jpg",
+    "/images/images/ai.jpg",
+    "/images/images/app.jpg",
+    "/images/images/brand.jpg",
+    "/images/images/web.jpg",
+    "/images/images/shield.jpg",
+    "/images/images/cloud.jpg",
+];
 function Home() {
     const cardsRef = useRef([]);
     const servicesSectionRef = useRef(null);
@@ -29,7 +37,7 @@ function Home() {
 
     useLayoutEffect(() => {
         // 2. Add the preloading logic
-        const imagesToPreload = [...customerImages, ...workImages];
+        const imagesToPreload = [...serviceImages, ...customerImages, ...workImages];
         imagesToPreload.forEach(src => {
             const img = new Image();
             img.src = src;
@@ -71,10 +79,7 @@ function Home() {
                     <h1 className="heroTxt">
                         Grow your business from design to development effortlessly.
                     </h1>
-                    <div className="heroBtns">
-                        <button className="getQuote" onClick={handleConsultationClick}>Book a Free Consultation</button>
-                        <button className="getQuote menuBtn" onClick={handleConsultationClick}><ArrowUpRight /></button>
-                    </div>
+
                 </div>
 
             </div>
