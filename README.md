@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# Neuaurelius
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Neuaurelius is a long-term research and engineering company focused on the design of complete intelligent systems — from physical hardware to autonomous cognition.
 
-## Available Scripts
+This organization is not product-driven at its current stage. It exists to build foundations: technical, architectural, and philosophical, for future generations of intelligent machines.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Purpose
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The core purpose of Neuaurelius is to research, design, and engineer **embodied intelligence**.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+We believe that intelligence cannot be separated from the physical world. True autonomy emerges only when perception, decision-making, learning, and action are tightly coupled with hardware and real environments.
 
-### `npm test`
+Neuaurelius is being built to explore this belief rigorously and systematically.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Core Focus Areas
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Neuaurelius works across multiple layers of the technology stack, treating them as a single, unified system rather than isolated disciplines.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Primary focus areas include:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- System design and architecture  
+- Low-level software and operating systems  
+- Computer architecture and execution models  
+- Embedded systems and electronics  
+- Robotics for real-world and extreme environments  
+- Autonomous aerial and ground platforms  
+- AI and machine learning systems integrated with hardware  
+- Cognitive and learning architectures for embodied agents  
+- Long-term research toward sentient humanoid robotics  
 
-### `npm run eject`
+These are research directions, not commercial offerings.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Philosophy
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Neuaurelius is guided by the following principles:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Systems must be designed from first principles  
+- Hardware, software, and intelligence cannot be treated independently  
+- Correctness, safety, and reliability matter more than speed or hype  
+- Long-term thinking outweighs short-term optimization  
+- Understanding precedes scale  
+- Research precedes commercialization  
 
-## Learn More
+We avoid trend-driven development and speculative claims. Progress is measured by depth of understanding, not visibility.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Current Stage
 
-### Code Splitting
+Neuaurelius is currently in its **foundational research and system design phase**.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+At this stage, the focus is on:
+- Building internal knowledge
+- Prototyping core system ideas
+- Studying constraints of real-world intelligence
+- Defining long-term technical directions
 
-### Analyzing the Bundle Size
+There are no products, services, or commercial timelines at present.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Long-Term Direction
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Over time, Neuaurelius aims to contribute to and build:
 
-### Advanced Configuration
+- Exploration robots for hazardous and unknown environments  
+- Autonomous systems for defense and security, approached responsibly and ethically  
+- Advanced UAV and drone platforms  
+- General-purpose humanoid robotic systems capable of learning and adaptation  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+These goals are long-term and research-driven.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Ethics and Responsibility
 
-### `npm run build` fails to minify
+The development of intelligent and autonomous systems carries significant responsibility.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Neuaurelius acknowledges the ethical, social, and safety implications of its work and treats them as first-class concerns. Systems must be designed with accountability, control, and long-term impact in mind.
+
+---
+
+## Collaboration
+
+Neuaurelius is open to:
+- Research collaboration
+- Technical discussion
+- Long-term partnerships aligned with its philosophy
+
+The focus is on shared understanding and serious engineering effort.
+
+---
+
+## Contact
+
+For research-related inquiries or collaboration discussions:
+
+Email: post@neuaurelius.com
+
+---
+
+Neuaurelius exists to design machines that do not merely execute instructions, but understand, learn, and act within the physical world.
+
+This repository and website represent the earliest stage of that journey.
+
