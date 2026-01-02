@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { ArrowUpRight, ArrowDown, Menu, X, Sun, Moon } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, Menu, X, Sun, Moon, Monitor } from 'lucide-react';
 
 // --- Styles & Fonts Injection ---
 const GlobalStyles = () => (
@@ -150,7 +150,7 @@ const GlobalStyles = () => (
       .preloader {
         position: fixed;
         inset: 0;
-        background-color: var(--bg-color); /* Updated to use theme variable */
+        background-color: var(--bg-color);
         z-index: 9999;
         display: flex;
         justify-content: center;
@@ -188,7 +188,7 @@ const GlobalStyles = () => (
         stroke-dashoffset: 12000;
         animation: drawLogo 2.2s var(--ease-out-expo) forwards;
         fill: transparent;
-        stroke: var(--text-primary); /* Updated to use theme variable */
+        stroke: var(--text-primary);
         stroke-width: 20px;
         transition: stroke 0.5s ease;
       }
@@ -205,7 +205,7 @@ const GlobalStyles = () => (
       @keyframes drawLogo {
         0% { stroke-dashoffset: 12000; fill: transparent; }
         60% { stroke-dashoffset: 0; fill: transparent; }
-        100% { stroke-dashoffset: 0; fill: var(--text-primary); } /* Updated to use theme variable */
+        100% { stroke-dashoffset: 0; fill: var(--text-primary); }
       }
 
       @keyframes transformSymbol {
@@ -555,13 +555,13 @@ const GlobalStyles = () => (
         color: var(--text-primary);
       }
 
-      /* Globe Styles - Updated for Sticky Positioning */
+      /* Globe Styles */
       .globe-container {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%; /* Covers the full scrollable trajectory area */
+        height: 100%;
         z-index: 0;
         pointer-events: none;
         opacity: 0.2;
@@ -569,11 +569,10 @@ const GlobalStyles = () => (
       }
       
       [data-theme="light"] .globe-container {
-         mix-blend-mode: multiply; /* Better for light mode */
+         mix-blend-mode: multiply;
          opacity: 0.15;
       }
       
-      /* New container to make the globe stick to viewport */
       .globe-sticky-view {
          position: sticky;
          top: 0;
@@ -585,7 +584,6 @@ const GlobalStyles = () => (
          overflow: hidden;
       }
       
-      /* Constrains max size of globe */
       .globe-canvas-sizer {
          width: 100%;
          max-width: 900px;
@@ -812,7 +810,6 @@ const NeuaureliusSymbolLogo = ({ className, width = "100%", height = "100%" }) =
 );
 
 // 2. New Text Logo (For Navbar & End of Preloader)
-// Updated to use currentColor for fill to respect theme variables
 const NeuaureliusTextLogo = ({ className, width = "100%", height = "100%", style }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
@@ -874,7 +871,13 @@ const WireframeGlobe = React.memo(({ progress = 0, theme = 'dark' }) => {
     }, [progress]);
 
     useEffect(() => {
-        themeRef.current = theme;
+        // Resolve system theme to actual color for canvas drawing
+        if (theme === 'system') {
+             const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+             themeRef.current = isSystemDark ? 'dark' : 'light';
+        } else {
+             themeRef.current = theme;
+        }
     }, [theme]);
 
     useEffect(() => {
@@ -885,7 +888,6 @@ const WireframeGlobe = React.memo(({ progress = 0, theme = 'dark' }) => {
         let width = canvas.width = canvas.clientWidth;
         let height = canvas.height = canvas.clientHeight;
         
-        // Decreased radius multiplier from 0.4 to 0.3 to prevent visual overflow and reduce size
         const radius = width * 0.3; 
         const latLines = 12;
         const lonLines = 12;
@@ -898,7 +900,8 @@ const WireframeGlobe = React.memo(({ progress = 0, theme = 'dark' }) => {
 
         const drawGlobe = () => {
             ctx.clearRect(0, 0, width, height);
-            // Change color based on theme
+            
+            // Check themeRef for stroke color
             const isDark = themeRef.current === 'dark';
             ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)';
             ctx.lineWidth = 1;
@@ -906,11 +909,10 @@ const WireframeGlobe = React.memo(({ progress = 0, theme = 'dark' }) => {
             const cx = width / 2;
             const cy = height / 2;
 
-            const rotation = progressRef.current * Math.PI * 4;
+            // --- ROTATION SPEED: Slowed down to Math.PI (half rotation) ---
+            const rotation = progressRef.current * Math.PI; 
             const tilt = 0.2; 
 
-            // Use width as dynamic perspective basis instead of hardcoded 500
-            // This prevents overflow on large screens
             const perspective = width; 
 
             const project = (r, lat, lon) => {
@@ -971,7 +973,7 @@ const WireframeGlobe = React.memo(({ progress = 0, theme = 'dark' }) => {
             window.removeEventListener('resize', handleResize);
             if (frameRef.current) cancelAnimationFrame(frameRef.current);
         };
-    }, [theme]); // Re-run if theme changes to update strokeStyle
+    }, [theme]); 
 
     return (
         <div className="globe-container">
@@ -1070,7 +1072,10 @@ const TrajectoryGroup = ({ theme }) => {
   }, [items]);
 
   const tipPoint = calculateCubicBezier(drawProgress, p0, p1, p2, p3);
-  const isDark = theme === 'dark';
+  
+  // Resolve theme color for SVG
+  const isDark = theme === 'dark' || (theme === 'system' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  
   const mainColor = isDark ? '#ffffff' : '#000000';
   const faintColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
 
@@ -1129,7 +1134,6 @@ const TrajectoryGroup = ({ theme }) => {
             const isActive = activeIndex === i;
             const isReached = drawProgress >= (i / (items.length - 1)) - 0.05;
             
-            // Dynamic dot fill logic
             const dotFill = isActive ? mainColor : (isDark ? "#000" : "#fff");
             const dotStroke = mainColor;
 
@@ -1210,6 +1214,19 @@ const Navigation = ({ theme, toggleTheme }) => {
     }
   };
 
+  // Helper to render the correct icon based on current theme state
+  const getThemeIcon = () => {
+      if (theme === 'light') return <Sun size={20} />;
+      if (theme === 'dark') return <Moon size={20} />;
+      return <Monitor size={20} />; // System icon
+  };
+  
+  const getThemeLabel = () => {
+      if (theme === 'light') return 'Light Mode';
+      if (theme === 'dark') return 'Dark Mode';
+      return 'System Default';
+  };
+
   const navItems = [
     { id: 'home', label: 'Index' },
     { id: 'vision', label: 'Aim' },
@@ -1233,8 +1250,8 @@ const Navigation = ({ theme, toggleTheme }) => {
             ))}
             
             {/* Theme Toggle Button */}
-            <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme" title={`Current: ${theme}`}>
+              {getThemeIcon()}
             </button>
           </div>
 
@@ -1268,17 +1285,8 @@ const Navigation = ({ theme, toggleTheme }) => {
                 transition: `opacity 0.5s ease 0.4s` 
             }}
         >
-            {theme === 'dark' ? (
-                <>
-                    <Sun size={18} />
-                    <span>Light Mode</span>
-                </>
-            ) : (
-                <>
-                    <Moon size={18} />
-                    <span>Dark Mode</span>
-                </>
-            )}
+            {getThemeIcon()}
+            <span style={{ marginLeft: '10px' }}>{getThemeLabel()}</span>
         </button>
       </div>
     </>
@@ -1425,15 +1433,14 @@ const Contact = () => {
 
 // --- App Root ---
 const App = () => {
-  // Theme State
+  // Theme State: 'dark' | 'light' | 'system'
   const [theme, setTheme] = useState(() => {
-      // Check local storage or prefer-color-scheme
+      // Check local storage or default to system
       if (typeof window !== 'undefined') {
           const saved = localStorage.getItem('theme');
-          if (saved) return saved;
-          return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          return saved || 'system';
       }
-      return 'dark';
+      return 'system';
   });
 
   // Preloader State
@@ -1441,13 +1448,45 @@ const App = () => {
 
   // Apply theme to document
   useEffect(() => {
-      document.documentElement.setAttribute('data-theme', theme);
+      const root = document.documentElement;
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const applyTheme = (targetTheme) => {
+          let visualTheme = targetTheme;
+          
+          if (targetTheme === 'system') {
+              visualTheme = mediaQuery.matches ? 'dark' : 'light';
+          }
+          
+          root.setAttribute('data-theme', visualTheme);
+      };
+
+      applyTheme(theme);
       localStorage.setItem('theme', theme);
+
+      // Listener for system changes when in system mode
+      const handleSystemChange = () => {
+          if (theme === 'system') {
+              applyTheme('system');
+          }
+      };
+
+      if (theme === 'system') {
+          mediaQuery.addEventListener('change', handleSystemChange);
+      }
+
+      return () => {
+          mediaQuery.removeEventListener('change', handleSystemChange);
+      };
   }, [theme]);
 
-  // Handle Toggle
+  // Handle Toggle Cycle: Dark -> Light -> System -> Dark
   const toggleTheme = () => {
-      setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+      setTheme((prev) => {
+          if (prev === 'dark') return 'light';
+          if (prev === 'light') return 'system';
+          return 'dark';
+      });
   };
 
   useEffect(() => {
