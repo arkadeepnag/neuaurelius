@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { ArrowUpRight, ArrowDown, Menu, X } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, Menu, X, Sun, Moon } from 'lucide-react';
 
 // --- Styles & Fonts Injection ---
 const GlobalStyles = () => (
@@ -37,17 +37,30 @@ const GlobalStyles = () => (
       }
 
       :root {
-        --bg-color: #000000;
+        /* Default Dark Mode Variables */
+        --bg-color: #050505;
         --text-primary: #ffffff;
         --text-secondary: #d4d4d4;
         --text-muted: #a3a3a3;
         --accent-color: #ffffff;
         --border-color: rgba(255, 255, 255, 0.15);
+        --nav-bg: rgba(5, 5, 5, 0.85);
+        
         --font-body: 'Gilmer', sans-serif; 
         --font-heading: 'Gilmer', sans-serif;
         --max-width: 1400px;
         --nav-height: 80px;
         --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      [data-theme="light"] {
+        --bg-color: #f2f2f2;
+        --text-primary: #171717;
+        --text-secondary: #525252;
+        --text-muted: #737373;
+        --accent-color: #000000;
+        --border-color: rgba(0, 0, 0, 0.1);
+        --nav-bg: rgba(242, 242, 242, 0.85);
       }
 
       * {
@@ -67,6 +80,7 @@ const GlobalStyles = () => (
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         overflow-x: hidden;
+        transition: background-color 0.5s ease, color 0.5s ease;
       }
 
       /* Scrollbar */
@@ -75,8 +89,9 @@ const GlobalStyles = () => (
         background: var(--bg-color);
       }
       ::-webkit-scrollbar-thumb {
-        background: #333;
+        background: var(--text-muted);
         border-radius: 4px;
+        opacity: 0.5;
       }
 
       /* Typography Utilities */
@@ -97,6 +112,7 @@ const GlobalStyles = () => (
         cursor: pointer;
         font-family: inherit;
         color: inherit;
+        outline: none;
       }
 
       /* Layout Utilities */
@@ -134,7 +150,7 @@ const GlobalStyles = () => (
       .preloader {
         position: fixed;
         inset: 0;
-        background-color: #000;
+        background-color: #050505; /* Always dark for brand intro */
         z-index: 9999;
         display: flex;
         justify-content: center;
@@ -214,7 +230,7 @@ const GlobalStyles = () => (
       }
 
       .navbar.scrolled {
-        background-color: rgba(0, 0, 0, 0.85);
+        background-color: var(--nav-bg);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--border-color);
         padding: 1rem 0;
@@ -236,8 +252,6 @@ const GlobalStyles = () => (
         display: flex;
         align-items: center;
         transition: opacity 0.3s;
-        /* Ensure logo is white */
-        fill: white; 
       }
       
       .logo-btn:hover {
@@ -247,6 +261,7 @@ const GlobalStyles = () => (
       .nav-links {
         display: flex;
         gap: 3rem;
+        align-items: center;
       }
 
       .nav-item {
@@ -278,9 +293,20 @@ const GlobalStyles = () => (
         width: 100%;
       }
 
+      .theme-toggle {
+        color: var(--text-primary);
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      
+      .theme-toggle:hover {
+        transform: rotate(15deg);
+        opacity: 0.8;
+      }
+
       .mobile-toggle {
         display: none;
         z-index: 1001;
+        color: var(--text-primary);
       }
 
       /* --- Mobile Menu --- */
@@ -313,6 +339,20 @@ const GlobalStyles = () => (
         letter-spacing: 0.05em;
         color: var(--text-primary);
       }
+      
+      .mobile-theme-toggle {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        padding: 0.5rem 1rem;
+        border-radius: 99px;
+      }
 
       /* --- Hero Section --- */
       .hero-title {
@@ -321,6 +361,7 @@ const GlobalStyles = () => (
         margin-bottom: 4rem;
         letter-spacing: -0.04em;
         font-weight: 600;
+        color: var(--text-primary);
       }
 
       .hero-subtitle {
@@ -436,6 +477,7 @@ const GlobalStyles = () => (
         line-height: 1.05;
         font-weight: 500;
         letter-spacing: -0.03em;
+        color: var(--text-primary);
       }
 
       .manifesto-text {
@@ -509,22 +551,45 @@ const GlobalStyles = () => (
       }
         
       .trajectory-item:hover .t-desc {
-        color: #fff;
+        color: var(--text-primary);
       }
 
-      /* Globe Styles */
+      /* Globe Styles - Updated for Sticky Positioning */
       .globe-container {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
         width: 100%;
-        max-width: 900px;
-        aspect-ratio: 1;
+        height: 100%; /* Covers the full scrollable trajectory area */
         z-index: 0;
         pointer-events: none;
         opacity: 0.2;
         mix-blend-mode: screen;
+      }
+      
+      [data-theme="light"] .globe-container {
+         mix-blend-mode: multiply; /* Better for light mode */
+         opacity: 0.15;
+      }
+      
+      /* New container to make the globe stick to viewport */
+      .globe-sticky-view {
+         position: sticky;
+         top: 0;
+         height: 100vh;
+         width: 100%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         overflow: hidden;
+      }
+      
+      /* Constrains max size of globe */
+      .globe-canvas-sizer {
+         width: 100%;
+         max-width: 900px;
+         aspect-ratio: 1;
+         position: relative;
       }
 
       /* --- Contact Section --- */
@@ -535,6 +600,7 @@ const GlobalStyles = () => (
         max-width: 900px;
         margin-bottom: 6rem;
         letter-spacing: -0.02em;
+        color: var(--text-primary);
       }
 
       .contact-grid {
@@ -565,8 +631,8 @@ const GlobalStyles = () => (
       }
 
       .email-link:hover {
-        border-color: rgba(255,255,255,0.3);
-        color: #ccc;
+        border-color: var(--border-color);
+        color: var(--text-secondary);
       }
 
       .location-text {
@@ -618,7 +684,7 @@ const GlobalStyles = () => (
         .svg-container {
             width: 100px;
         }
-        .globe-container {
+        .globe-canvas-sizer {
             max-width: 600px;
         }
       }
@@ -671,9 +737,8 @@ const GlobalStyles = () => (
           transform: none;
         }
 
-        .globe-container {
+        .globe-canvas-sizer {
           max-width: 350px;
-          opacity: 0.15;
         }
         
         .contact-grid {
@@ -746,7 +811,7 @@ const NeuaureliusSymbolLogo = ({ className, width = "100%", height = "100%" }) =
 );
 
 // 2. New Text Logo (For Navbar & End of Preloader)
-// Note: Changed fill to 'currentColor' to allow visibility control
+// Updated to use currentColor for fill to respect theme variables
 const NeuaureliusTextLogo = ({ className, width = "100%", height = "100%", style }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
@@ -797,14 +862,19 @@ const Preloader = ({ loading }) => {
 };
 
 // --- Wireframe Globe Component ---
-const WireframeGlobe = React.memo(({ progress = 0 }) => {
+const WireframeGlobe = React.memo(({ progress = 0, theme = 'dark' }) => {
     const canvasRef = useRef(null);
     const frameRef = useRef(null);
     const progressRef = useRef(progress);
+    const themeRef = useRef(theme);
 
     useEffect(() => {
         progressRef.current = progress;
     }, [progress]);
+
+    useEffect(() => {
+        themeRef.current = theme;
+    }, [theme]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -814,7 +884,8 @@ const WireframeGlobe = React.memo(({ progress = 0 }) => {
         let width = canvas.width = canvas.clientWidth;
         let height = canvas.height = canvas.clientHeight;
         
-        const radius = width * 0.4;
+        // Decreased radius multiplier from 0.4 to 0.3 to prevent visual overflow and reduce size
+        const radius = width * 0.3; 
         const latLines = 12;
         const lonLines = 12;
         
@@ -826,7 +897,9 @@ const WireframeGlobe = React.memo(({ progress = 0 }) => {
 
         const drawGlobe = () => {
             ctx.clearRect(0, 0, width, height);
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+            // Change color based on theme
+            const isDark = themeRef.current === 'dark';
+            ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)';
             ctx.lineWidth = 1;
             
             const cx = width / 2;
@@ -834,6 +907,10 @@ const WireframeGlobe = React.memo(({ progress = 0 }) => {
 
             const rotation = progressRef.current * Math.PI * 4;
             const tilt = 0.2; 
+
+            // Use width as dynamic perspective basis instead of hardcoded 500
+            // This prevents overflow on large screens
+            const perspective = width; 
 
             const project = (r, lat, lon) => {
                 let x = r * Math.cos(lat) * Math.cos(lon);
@@ -848,7 +925,8 @@ const WireframeGlobe = React.memo(({ progress = 0 }) => {
                 let y2 = x1 * Math.sin(tilt) + y1 * Math.cos(tilt);
                 let z2 = z1;
 
-                const scale = 500 / (500 - z2);
+                const scale = perspective / (perspective - z2);
+
                 return {
                     x: cx + x2 * scale,
                     y: cy + y2 * scale,
@@ -892,17 +970,21 @@ const WireframeGlobe = React.memo(({ progress = 0 }) => {
             window.removeEventListener('resize', handleResize);
             if (frameRef.current) cancelAnimationFrame(frameRef.current);
         };
-    }, []); 
+    }, [theme]); // Re-run if theme changes to update strokeStyle
 
     return (
         <div className="globe-container">
-            <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />
+            <div className="globe-sticky-view">
+                <div className="globe-canvas-sizer">
+                    <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />
+                </div>
+            </div>
         </div>
     );
 });
 
 // --- Trajectory Logic ---
-const TrajectoryGroup = () => {
+const TrajectoryGroup = ({ theme }) => {
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [drawProgress, setDrawProgress] = useState(0);
@@ -987,18 +1069,21 @@ const TrajectoryGroup = () => {
   }, [items]);
 
   const tipPoint = calculateCubicBezier(drawProgress, p0, p1, p2, p3);
+  const isDark = theme === 'dark';
+  const mainColor = isDark ? '#ffffff' : '#000000';
+  const faintColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
 
   return (
     <div ref={containerRef} className="trajectory-wrapper">
-      <WireframeGlobe progress={drawProgress} />
+      <WireframeGlobe progress={drawProgress} theme={theme} />
 
       <div className="svg-container">
         <svg width="100%" height="100%" viewBox="-50 0 200 600" preserveAspectRatio="xMidYMid meet" style={{ overflow: 'visible' }}>
           <defs>
             <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#fff" stopOpacity="0" />
-              <stop offset="50%" stopColor="#fff" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+              <stop offset="0%" stopColor={mainColor} stopOpacity="0" />
+              <stop offset="50%" stopColor={mainColor} stopOpacity="0.8" />
+              <stop offset="100%" stopColor={mainColor} stopOpacity="0" />
             </linearGradient>
             
             <filter id="glow-heavy" x="-100%" y="-100%" width="300%" height="300%">
@@ -1013,14 +1098,14 @@ const TrajectoryGroup = () => {
           <path 
             d={`M ${p0.x} ${p0.y} C ${p1.x} ${p1.y}, ${p2.x} ${p2.y}, ${p3.x} ${p3.y}`} 
             fill="none" 
-            stroke="rgba(255,255,255,0.1)" 
+            stroke={faintColor} 
             strokeWidth="1" 
           />
           
           <path 
             d={`M ${p0.x} ${p0.y} C ${p1.x} ${p1.y}, ${p2.x} ${p2.y}, ${p3.x} ${p3.y}`} 
             fill="none" 
-            stroke="#fff" 
+            stroke={mainColor} 
             strokeWidth="2" 
             pathLength="1"
             strokeDasharray="1"
@@ -1031,8 +1116,8 @@ const TrajectoryGroup = () => {
           
           {drawProgress > 0.01 && drawProgress < 0.99 && (
               <g transform={`translate(${tipPoint.x}, ${tipPoint.y})`}>
-                  <circle r="4" fill="#fff" filter="url(#glow-heavy)" />
-                  <circle r="8" fill="none" stroke="#fff" strokeOpacity="0.3" strokeWidth="1">
+                  <circle r="4" fill={mainColor} filter="url(#glow-heavy)" />
+                  <circle r="8" fill="none" stroke={mainColor} strokeOpacity="0.3" strokeWidth="1">
                       <animate attributeName="r" from="4" to="12" dur="1.5s" repeatCount="indefinite" />
                       <animate attributeName="opacity" from="0.8" to="0" dur="1.5s" repeatCount="indefinite" />
                   </circle>
@@ -1042,6 +1127,10 @@ const TrajectoryGroup = () => {
           {dotPositions.map((pos, i) => {
             const isActive = activeIndex === i;
             const isReached = drawProgress >= (i / (items.length - 1)) - 0.05;
+            
+            // Dynamic dot fill logic
+            const dotFill = isActive ? mainColor : (isDark ? "#000" : "#fff");
+            const dotStroke = mainColor;
 
             return (
               <g key={i} style={{ 
@@ -1051,8 +1140,8 @@ const TrajectoryGroup = () => {
                 }}>
                 <circle 
                    cx={pos.x} cy={pos.y} r={isActive ? 6 : 3} 
-                   fill={isActive ? "#fff" : "#000"} 
-                   stroke="#fff" 
+                   fill={dotFill} 
+                   stroke={dotStroke} 
                    strokeWidth="2" 
                    filter={isActive ? "url(#glow-heavy)" : ""}
                    style={{ transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}
@@ -1067,7 +1156,7 @@ const TrajectoryGroup = () => {
         {items.map((item, index) => (
           <div key={index} 
                className={`trajectory-item ${activeIndex === index ? 'active' : ''}`}>
-             <span className="t-title" style={{ color: activeIndex === index ? '#fff' : 'var(--text-muted)' }}>
+             <span className="t-title" style={{ color: activeIndex === index ? 'var(--text-primary)' : 'var(--text-muted)' }}>
                 {item.title}
              </span>
              <p className="t-desc">{item.desc}</p>
@@ -1078,7 +1167,7 @@ const TrajectoryGroup = () => {
   );
 };
 
-const Navigation = () => {
+const Navigation = ({ theme, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -1131,8 +1220,8 @@ const Navigation = () => {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${hidden ? 'nav-hidden' : ''}`}>
         <div className="container nav-content">
           <button onClick={() => scrollToSection('home')} className="logo-btn">
-            {/* Swapped to Text Logo only, as requested */}
-            <NeuaureliusTextLogo width="150px" height="30px" style={{fill: 'white'}} />
+            {/* Logo fills with currentColor, inheriting var(--text-primary) via CSS */}
+            <NeuaureliusTextLogo width="150px" height="30px" style={{ fill: 'var(--text-primary)' }} />
           </button>
 
           <div className="nav-links">
@@ -1141,10 +1230,15 @@ const Navigation = () => {
                 {item.label}
               </button>
             ))}
+            
+            {/* Theme Toggle Button */}
+            <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </div>
 
           <button className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} color="white" /> : <Menu size={24} color="white" />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </nav>
@@ -1164,6 +1258,27 @@ const Navigation = () => {
             {item.label}
           </button>
         ))}
+
+        <button 
+            className="mobile-theme-toggle"
+            onClick={toggleTheme}
+            style={{ 
+                opacity: mobileMenuOpen ? 1 : 0, 
+                transition: `opacity 0.5s ease 0.4s` 
+            }}
+        >
+            {theme === 'dark' ? (
+                <>
+                    <Sun size={18} />
+                    <span>Light Mode</span>
+                </>
+            ) : (
+                <>
+                    <Moon size={18} />
+                    <span>Dark Mode</span>
+                </>
+            )}
+        </button>
       </div>
     </>
   );
@@ -1211,7 +1326,7 @@ const Hero = () => {
   );
 };
 
-const Vision = () => {
+const Vision = ({ theme }) => {
   return (
     <section id="vision">
       <div className="container">
@@ -1248,7 +1363,7 @@ const Vision = () => {
           <RevealOnScroll>
             <h3 style={{ fontSize: '2rem', marginBottom: '2rem', fontWeight: 500 }}>Core Trajectories</h3>
           </RevealOnScroll>
-          <TrajectoryGroup />
+          <TrajectoryGroup theme={theme} />
         </div>
       </div>
     </section>
@@ -1309,8 +1424,30 @@ const Contact = () => {
 
 // --- App Root ---
 const App = () => {
-  // Increased timeout to allow for the full sequence: Draw -> Morph -> Finish
+  // Theme State
+  const [theme, setTheme] = useState(() => {
+      // Check local storage or prefer-color-scheme
+      if (typeof window !== 'undefined') {
+          const saved = localStorage.getItem('theme');
+          if (saved) return saved;
+          return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      return 'dark';
+  });
+
+  // Preloader State
   const [isLoading, setIsLoading] = useState(true);
+
+  // Apply theme to document
+  useEffect(() => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  // Handle Toggle
+  const toggleTheme = () => {
+      setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   useEffect(() => {
     // 2.2s draw + 1.2s morph + buffer
@@ -1325,13 +1462,13 @@ const App = () => {
     <>
       <GlobalStyles />
       
-      {/* Preloader overlay */}
+      {/* Preloader overlay (Always dark for brand consistency) */}
       <Preloader loading={isLoading} />
 
-      <Navigation />
+      <Navigation theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Hero />
-        <Vision />
+        <Vision theme={theme} />
         <Contact />
       </main>
     </>
