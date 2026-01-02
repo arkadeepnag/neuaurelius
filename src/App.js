@@ -150,12 +150,12 @@ const GlobalStyles = () => (
       .preloader {
         position: fixed;
         inset: 0;
-        background-color: #050505; /* Always dark for brand intro */
+        background-color: var(--bg-color); /* Updated to use theme variable */
         z-index: 9999;
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: transform 1s var(--ease-out-expo);
+        transition: transform 1s var(--ease-out-expo), background-color 0.5s ease;
       }
 
       .preloader.loaded {
@@ -188,8 +188,9 @@ const GlobalStyles = () => (
         stroke-dashoffset: 12000;
         animation: drawLogo 2.2s var(--ease-out-expo) forwards;
         fill: transparent;
-        stroke: #fff;
+        stroke: var(--text-primary); /* Updated to use theme variable */
         stroke-width: 20px;
+        transition: stroke 0.5s ease;
       }
 
       /* Stage 2: The Text Logo */
@@ -204,7 +205,7 @@ const GlobalStyles = () => (
       @keyframes drawLogo {
         0% { stroke-dashoffset: 12000; fill: transparent; }
         60% { stroke-dashoffset: 0; fill: transparent; }
-        100% { stroke-dashoffset: 0; fill: #ffffff; }
+        100% { stroke-dashoffset: 0; fill: var(--text-primary); } /* Updated to use theme variable */
       }
 
       @keyframes transformSymbol {
@@ -853,7 +854,7 @@ const Preloader = ({ loading }) => {
 
         {/* Stage 2: The Text appearing */}
         <div className="loader-text-wrapper">
-          <NeuaureliusTextLogo style={{ fill: 'white' }} />
+          <NeuaureliusTextLogo style={{ fill: 'var(--text-primary)' }} />
         </div>
 
       </div>
