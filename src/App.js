@@ -860,143 +860,137 @@ const Preloader = ({ loading }) => {
 };
 
 // --- Wireframe Globe Component ---
-const WireframeGlobe = React.memo(({ progress = 0, theme = 'dark' }) => {
-    const canvasRef = useRef(null);
-    const frameRef = useRef(null);
-    const progressRef = useRef(progress);
-    const themeRef = useRef(theme);
+// --- Dynamic Background Visualizer ---
+const TrajectoryVisualizer = React.memo(({ activeIndex, progress, theme }) => {
+    // Normalize index: if activeIndex is -1 (start), default to 0.
+    const currentIndex = activeIndex < 0 ? 0 : activeIndex;
+    
+    // Resolve theme colors
+    const isDark = theme === 'dark' || (theme === 'system' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const strokeColor = isDark ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)';
+    const accentColor = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)';
 
-    useEffect(() => {
-        progressRef.current = progress;
-    }, [progress]);
+    // Subtle parallax & rotation effect based on scroll progress
+    const getTransform = (index) => {
+        const isActive = currentIndex === index;
+        const rotate = isActive ? progress * 20 : progress * 20 - 10;
+        const scale = isActive ? 1 : 0.95;
+        const translate = isActive ? 0 : 20;
+        return `rotate(${rotate}deg) scale(${scale}) translateY(${translate}px)`;
+    };
 
-    useEffect(() => {
-        // Resolve system theme to actual color for canvas drawing
-        if (theme === 'system') {
-             const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-             themeRef.current = isSystemDark ? 'dark' : 'light';
-        } else {
-             themeRef.current = theme;
-        }
-    }, [theme]);
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = canvas.clientWidth;
-        let height = canvas.height = canvas.clientHeight;
-        
-        const radius = width * 0.3; 
-        const latLines = 12;
-        const lonLines = 12;
-        
-        const handleResize = () => {
-             width = canvas.width = canvas.clientWidth;
-             height = canvas.height = canvas.clientHeight;
-        };
-        window.addEventListener('resize', handleResize);
-
-        const drawGlobe = () => {
-            ctx.clearRect(0, 0, width, height);
-            
-            // Check themeRef for stroke color
-            const isDark = themeRef.current === 'dark';
-            ctx.strokeStyle = isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)';
-            ctx.lineWidth = 1;
-            
-            const cx = width / 2;
-            const cy = height / 2;
-
-            // --- ROTATION SPEED: Slowed down to Math.PI (half rotation) ---
-            const rotation = progressRef.current * Math.PI; 
-            const tilt = 0.2; 
-
-            const perspective = width; 
-
-            const project = (r, lat, lon) => {
-                let x = r * Math.cos(lat) * Math.cos(lon);
-                let y = r * Math.sin(lat);
-                let z = r * Math.cos(lat) * Math.sin(lon);
-
-                let x1 = x * Math.cos(rotation) - z * Math.sin(rotation);
-                let z1 = x * Math.sin(rotation) + z * Math.cos(rotation);
-                let y1 = y;
-
-                let x2 = x1 * Math.cos(tilt) - y1 * Math.sin(tilt);
-                let y2 = x1 * Math.sin(tilt) + y1 * Math.cos(tilt);
-                let z2 = z1;
-
-                const scale = perspective / (perspective - z2);
-
-                return {
-                    x: cx + x2 * scale,
-                    y: cy + y2 * scale,
-                    z: z2
-                };
-            };
-
-            for (let i = 0; i <= latLines; i++) {
-                const lat = Math.PI * (i / latLines - 0.5);
-                
-                ctx.beginPath();
-                for (let j = 0; j <= 50; j++) {
-                    const lon = (j / 50) * Math.PI * 2;
-                    const p = project(radius, lat, lon);
-                    if (j === 0) ctx.moveTo(p.x, p.y);
-                    else ctx.lineTo(p.x, p.y);
-                }
-                ctx.closePath();
-                ctx.stroke();
-            }
-
-            for (let i = 0; i < lonLines; i++) {
-                const lonBase = (i / lonLines) * Math.PI * 2;
-                
-                ctx.beginPath();
-                for (let j = 0; j <= 50; j++) {
-                    const lat = (j / 50) * Math.PI - Math.PI / 2;
-                    const p = project(radius, lat, lonBase);
-                    if (j === 0) ctx.moveTo(p.x, p.y);
-                    else ctx.lineTo(p.x, p.y);
-                }
-                ctx.stroke();
-            }
-
-            frameRef.current = requestAnimationFrame(drawGlobe);
-        };
-
-        drawGlobe();
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            if (frameRef.current) cancelAnimationFrame(frameRef.current);
-        };
-    }, [theme]); 
+    const baseStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        width: '100%',
+        maxWidth: '700px',
+        marginTop: '-350px',
+        marginLeft: '-350px',
+        transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+        willChange: 'opacity, transform'
+    };
 
     return (
-        <div className="globe-container">
-            <div className="globe-sticky-view">
-                <div className="globe-canvas-sizer">
-                    <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />
-                </div>
+        <div className="globe-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className="globe-sticky-view" style={{ position: 'relative', width: '100%', height: '100vh' }}>
+                
+                {/* 1. Battery / Energy Storage */}
+                <svg 
+                    style={{ ...baseStyle, opacity: currentIndex === 0 ? 1 : 0, transform: getTransform(0) }} 
+                    viewBox="0 0 100 100" fill="none" stroke={strokeColor} strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"
+                >
+                    <circle cx="50" cy="50" r="40" stroke={accentColor} strokeWidth="0.2" />
+                    <circle cx="50" cy="50" r="45" stroke={accentColor} strokeWidth="0.1" strokeDasharray="1 2" />
+                    
+                    <rect x="30" y="25" width="40" height="50" rx="3" />
+                    <path d="M42 25 v-5 h16 v5" />
+                    <path d="M46 20 v-3 h8 v3" stroke={accentColor}/>
+                    
+                    <rect x="35" y="30" width="30" height="10" rx="1" />
+                    <rect x="35" y="45" width="30" height="10" rx="1" />
+                    <rect x="35" y="60" width="30" height="10" rx="1" />
+                    
+                    <path d="M50 30 v10 M50 45 v10 M50 60 v10" strokeDasharray="1 1" />
+                    <circle cx="50" cy="35" r="1.5" fill={strokeColor} />
+                    <circle cx="50" cy="50" r="1.5" fill={strokeColor} />
+                    <circle cx="50" cy="65" r="1.5" fill={strokeColor} />
+                </svg>
+
+                {/* 2. Robotic Arm / Biomechanical Precision */}
+                <svg 
+                    style={{ ...baseStyle, opacity: currentIndex === 1 ? 1 : 0, transform: getTransform(1) }} 
+                    viewBox="0 0 100 100" fill="none" stroke={strokeColor} strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"
+                >
+                    <circle cx="50" cy="50" r="40" stroke={accentColor} strokeWidth="0.2" />
+                    <circle cx="50" cy="50" r="30" stroke={accentColor} strokeWidth="0.1" strokeDasharray="2 2" />
+                    
+                    <path d="M30 80 L50 80 L45 70 L35 70 Z" />
+                    <path d="M25 80 h30" strokeDasharray="1 2"/>
+                    
+                    <path d="M40 70 L55 45 M38 68 L53 43" strokeWidth="0.3" />
+                    <circle cx="40" cy="70" r="4" />
+                    
+                    <circle cx="55" cy="45" r="6" />
+                    <circle cx="55" cy="45" r="2" fill={strokeColor} />
+                    
+                    <path d="M55 45 L75 30 M57 47 L77 32" strokeWidth="0.3"/>
+                    
+                    <circle cx="75" cy="30" r="4" />
+                    <path d="M75 30 L85 20 M75 30 L88 35 M80 25 L85 25 M82 32 L87 30" />
+                    <path d="M40 70 Q60 50 75 30" stroke={accentColor} strokeDasharray="1 2" />
+                </svg>
+
+                {/* 3. Brain / Computational Cognition */}
+                <svg 
+                    style={{ ...baseStyle, opacity: currentIndex === 2 ? 1 : 0, transform: getTransform(2) }} 
+                    viewBox="0 0 100 100" fill="none" stroke={strokeColor} strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"
+                >
+                    <circle cx="50" cy="50" r="40" stroke={accentColor} strokeWidth="0.2" />
+                    
+                    <path d="M50 25 C 25 25, 20 45, 30 60 C 25 70, 35 80, 50 75 C 65 80, 75 70, 70 60 C 80 45, 75 25, 50 25 Z" />
+                    <path d="M50 25 V75" strokeDasharray="1 2" />
+                    
+                    <circle cx="40" cy="35" r="1.5" fill={strokeColor} />
+                    <circle cx="60" cy="35" r="1.5" fill={strokeColor} />
+                    <circle cx="35" cy="50" r="1.5" fill={strokeColor} />
+                    <circle cx="65" cy="50" r="1.5" fill={strokeColor} />
+                    <circle cx="45" cy="65" r="1.5" fill={strokeColor} />
+                    <circle cx="55" cy="65" r="1.5" fill={strokeColor} />
+                    <circle cx="50" cy="45" r="2" />
+                    
+                    <path d="M50 25 L40 35 L35 50 L45 65 L50 75" strokeWidth="0.2"/>
+                    <path d="M50 25 L60 35 L65 50 L55 65 L50 75" strokeWidth="0.2"/>
+                    <path d="M40 35 L50 45 L60 35" strokeWidth="0.2"/>
+                    <path d="M35 50 L50 45 L65 50" strokeWidth="0.2"/>
+                    <path d="M45 65 L50 45 L55 65" strokeWidth="0.2"/>
+                    
+                    <circle cx="50" cy="45" r="15" stroke={accentColor} strokeDasharray="1 3" />
+                </svg>
+
             </div>
         </div>
     );
 });
-
-// --- Trajectory Logic ---
 const TrajectoryGroup = ({ theme }) => {
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [drawProgress, setDrawProgress] = useState(0);
 
+  // UPDATED TRAJECTORIES
   const items = useMemo(() => [
-    { title: "Exploration Robotics", desc: "Autonomous platforms designed for extreme, communications-denied environments." },
-    { title: "Aerial Autonomy", desc: "UAV systems capable of complex navigation without GPS or external pilots." },
-    { title: "Cognitive Architectures", desc: "Hierarchical control systems bridging high-level reasoning with low-level motor control." },
-    { title: "Humanoid Platforms", desc: "Long-term engineering toward general-purpose bi-pedal robotics." }
+    { 
+      title: "High-Density Energy Storage", 
+      desc: "Advancing battery systems to enable humanoid and large-scale robotic applications to operate with greater efficiency than biological systems, eliminating the need for frequent charging." 
+    },
+    { 
+      title: "Biomechanical Precision", 
+      desc: "Engineering high-fidelity robotic kinematics that are precise, accurate, and completely transcend traditional mechanical limitations." 
+    },
+    { 
+      title: "Computational Cognition & ASI", 
+      desc: "Simulating unprecedented artificial superintelligence through novel technologies that scale true cognitive capability, rather than merely expanding raw computational architecture." 
+    }
   ], []);
 
   const p0 = { x: 20, y: 0 };
@@ -1081,7 +1075,7 @@ const TrajectoryGroup = ({ theme }) => {
 
   return (
     <div ref={containerRef} className="trajectory-wrapper">
-      <WireframeGlobe progress={drawProgress} theme={theme} />
+      <TrajectoryVisualizer activeIndex={activeIndex} progress={drawProgress} theme={theme} />
 
       <div className="svg-container">
         <svg width="100%" height="100%" viewBox="-50 0 200 600" preserveAspectRatio="xMidYMid meet" style={{ overflow: 'visible' }}>
@@ -1171,7 +1165,6 @@ const TrajectoryGroup = ({ theme }) => {
     </div>
   );
 };
-
 const Navigation = ({ theme, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
