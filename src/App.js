@@ -794,46 +794,46 @@ const RevealOnScroll = ({ children, delay = 0, className = "" }) => {
 
 // 1. Original Symbol Logo (For Preloader Animation)
 const NeuaureliusSymbolLogo = ({ className, width = "100%", height = "100%" }) => (
-  <svg 
+  <svg
     className={className}
-    xmlns="http://www.w3.org/2000/svg" 
-    xmlnsXlink="http://www.w3.org/1999/xlink" 
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
     width={width}
     height={height}
-    viewBox="0 0 3600 2700" 
-    version="1.1" 
-    xmlSpace="preserve" 
+    viewBox="0 0 3600 2700"
+    version="1.1"
+    xmlSpace="preserve"
     style={{ fillRule: 'evenodd', clipRule: 'evenodd', strokeLinejoin: 'round', strokeMiterlimit: 2 }}
   >
-    <path d="M867.653,1398.775c0,-95.009 14.242,-186.718 40.705,-273.106c116.865,-381.499 472.074,-659.241 891.642,-659.241c514.576,0 932.347,417.771 932.347,932.347c0,154.189 -37.51,299.686 -103.894,427.857c-43.229,83.463 -98.702,159.579 -164.035,225.962l-1596.76,-650.702l-0.005,-3.117Zm1513.317,327.004c54.551,-96.637 85.688,-208.213 85.688,-327.004c0,-367.939 -298.72,-666.658 -666.658,-666.658c-308.384,0 -568.143,209.844 -644.153,494.407l1225.124,499.255Zm-469.759,507.794l-777.869,-316.993l0,-292.809l1044.631,425.702l-105.906,184.1l-160.855,0Zm-777.869,-210.8l517.283,210.8l-517.283,0l0,-210.8Z"/>
+    <path d="M867.653,1398.775c0,-95.009 14.242,-186.718 40.705,-273.106c116.865,-381.499 472.074,-659.241 891.642,-659.241c514.576,0 932.347,417.771 932.347,932.347c0,154.189 -37.51,299.686 -103.894,427.857c-43.229,83.463 -98.702,159.579 -164.035,225.962l-1596.76,-650.702l-0.005,-3.117Zm1513.317,327.004c54.551,-96.637 85.688,-208.213 85.688,-327.004c0,-367.939 -298.72,-666.658 -666.658,-666.658c-308.384,0 -568.143,209.844 -644.153,494.407l1225.124,499.255Zm-469.759,507.794l-777.869,-316.993l0,-292.809l1044.631,425.702l-105.906,184.1l-160.855,0Zm-777.869,-210.8l517.283,210.8l-517.283,0l0,-210.8Z" />
   </svg>
 );
 
 // 2. New Text Logo (For Navbar & End of Preloader)
 const NeuaureliusTextLogo = ({ className, width = "100%", height = "100%", style }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    xmlnsXlink="http://www.w3.org/1999/xlink" 
-    width={width} 
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    width={width}
     height={height}
-    viewBox="0 0 375 75" 
-    preserveAspectRatio="xMidYMid meet" 
+    viewBox="0 0 375 75"
+    preserveAspectRatio="xMidYMid meet"
     version="1.0"
     className={className}
     style={style}
   >
     <g fill="currentColor" fillOpacity="1" fillRule="nonzero">
-      <path d="M 23.464844 26.515625 C 18.527344 26.515625 14.585938 28.503906 11.640625 32.523438 L 11.640625 27.605469 L 2.050781 27.605469 L 2.050781 67.667969 L 11.640625 67.667969 L 11.640625 47.277344 C 11.640625 43.863281 12.457031 41.121094 14.089844 39.054688 C 15.722656 36.992188 17.855469 35.976562 20.519531 35.976562 C 23.109375 35.976562 25.0625 36.839844 26.375 38.566406 C 27.691406 40.296875 28.367188 42.660156 28.367188 45.703125 L 28.367188 67.667969 L 37.988281 67.667969 L 37.988281 43.789062 C 37.988281 38.457031 36.746094 34.25 34.261719 31.171875 C 31.773438 28.09375 28.1875 26.554688 23.464844 26.554688 Z M 23.464844 26.515625 "/>
-      <path d="M 61.128906 67.59375 C 65.566406 67.59375 69.332031 66.464844 72.421875 64.25 C 75.511719 62.035156 77.640625 59.445312 78.847656 56.515625 L 70.183594 53.8125 C 68.480469 57.230469 65.496094 58.957031 61.234375 58.957031 C 58.039062 58.957031 55.554688 58.167969 53.742188 56.554688 C 51.929688 54.9375 50.867188 52.796875 50.546875 50.132812 L 79.132812 50.132812 C 79.273438 49.308594 79.34375 48.105469 79.34375 46.527344 C 79.34375 40.785156 77.640625 36.015625 74.230469 32.222656 C 70.824219 28.429688 66.171875 26.554688 60.3125 26.554688 C 54.59375 26.554688 49.941406 28.503906 46.390625 32.410156 C 42.839844 36.316406 41.0625 41.234375 41.0625 47.128906 C 41.0625 53.285156 42.910156 58.242188 46.605469 61.996094 C 50.296875 65.753906 55.089844 67.628906 61.019531 67.628906 Z M 50.476562 43.789062 C 50.757812 41.421875 51.789062 39.394531 53.5625 37.703125 C 55.339844 36.015625 57.542969 35.152344 60.203125 35.152344 C 62.972656 35.152344 65.210938 35.976562 66.953125 37.628906 C 68.691406 39.28125 69.6875 41.347656 69.933594 43.789062 L 50.472656 43.789062 Z M 50.476562 43.789062 "/>
-      <path d="M 108.945312 27.605469 L 108.945312 46.753906 C 108.945312 50.246094 108.128906 53.023438 106.53125 55.089844 C 104.933594 57.152344 102.769531 58.167969 100.035156 58.167969 C 97.476562 58.167969 95.523438 57.304688 94.175781 55.578125 C 92.824219 53.851562 92.148438 51.484375 92.148438 48.441406 L 92.148438 27.679688 L 82.5625 27.679688 L 82.5625 50.359375 C 82.5625 55.726562 83.804688 59.96875 86.253906 63.046875 C 88.707031 66.128906 92.328125 67.667969 97.085938 67.667969 C 102.09375 67.667969 106.035156 65.675781 108.910156 61.660156 L 108.910156 67.628906 L 118.535156 67.667969 L 118.535156 27.679688 Z M 108.945312 27.605469 "/>
-      <path d="M 140.289062 67.59375 C 145.332031 67.59375 149.273438 65.640625 152.113281 61.734375 L 152.367188 67.667969 L 161.808594 67.667969 L 161.808594 27.605469 L 152.113281 27.605469 L 152.113281 32.296875 C 149.273438 28.429688 145.332031 26.515625 140.289062 26.515625 C 135.140625 26.515625 130.808594 28.46875 127.328125 32.375 C 123.847656 36.277344 122.105469 41.195312 122.105469 47.089844 C 122.105469 52.910156 123.847656 57.792969 127.328125 61.734375 C 130.808594 65.675781 135.105469 67.628906 140.253906 67.628906 Z M 141.921875 58.542969 C 138.902344 58.542969 136.417969 57.453125 134.464844 55.3125 C 132.511719 53.175781 131.554688 50.394531 131.554688 47.015625 C 131.554688 43.675781 132.511719 40.933594 134.464844 38.792969 C 136.417969 36.652344 138.902344 35.601562 141.921875 35.601562 C 144.871094 35.601562 147.355469 36.691406 149.378906 38.832031 C 151.402344 40.972656 152.398438 43.675781 152.398438 46.941406 C 152.398438 50.28125 151.402344 53.023438 149.378906 55.203125 C 147.355469 57.378906 144.871094 58.46875 141.921875 58.46875 Z M 141.921875 58.542969 "/>
-      <path d="M 193.542969 27.605469 L 193.542969 46.753906 C 193.542969 50.246094 192.722656 53.023438 191.125 55.089844 C 189.527344 57.152344 187.363281 58.167969 184.628906 58.167969 C 182.070312 58.167969 180.117188 57.304688 178.769531 55.578125 C 177.417969 53.851562 176.746094 51.484375 176.746094 48.441406 L 176.746094 27.679688 L 167.15625 27.679688 L 167.15625 50.359375 C 167.15625 55.726562 168.398438 59.96875 170.851562 63.046875 C 173.300781 66.128906 176.921875 67.667969 181.679688 67.667969 C 186.6875 67.667969 190.628906 65.675781 193.503906 61.660156 L 193.503906 67.667969 L 203.128906 67.628906 L 203.128906 27.679688 Z M 193.542969 27.605469 "/>
-      <path d="M 218.527344 33.347656 L 218.527344 27.605469 L 208.9375 27.605469 L 208.9375 67.628906 L 218.527344 67.628906 L 218.527344 49.570312 C 218.527344 44.464844 219.554688 40.859375 221.582031 38.757812 C 223.605469 36.652344 226.621094 35.941406 230.636719 36.617188 L 230.636719 27.078125 C 224.953125 26.253906 220.90625 28.355469 218.492188 33.386719 Z M 218.527344 33.347656 "/>
-      <path d="M 249.0625 67.59375 C 253.5 67.59375 257.265625 66.464844 260.355469 64.25 C 263.445312 62.035156 265.574219 59.445312 266.78125 56.515625 L 258.117188 53.8125 C 256.414062 57.230469 253.429688 58.957031 249.167969 58.957031 C 245.972656 58.957031 243.488281 58.167969 241.675781 56.554688 C 239.867188 54.9375 238.800781 52.796875 238.480469 50.132812 L 267.066406 50.132812 C 267.210938 49.308594 267.28125 48.105469 267.28125 46.527344 C 267.28125 40.785156 265.574219 36.015625 262.167969 32.222656 C 258.757812 28.429688 254.105469 26.554688 248.246094 26.554688 C 242.527344 26.554688 237.878906 28.503906 234.324219 32.410156 C 230.773438 36.316406 229 41.234375 229 47.128906 C 229 53.285156 230.847656 58.242188 234.539062 61.996094 C 238.230469 65.753906 243.027344 67.628906 248.957031 67.628906 Z M 238.410156 43.789062 C 238.695312 41.421875 239.722656 39.394531 241.5 37.703125 C 243.273438 36.015625 245.476562 35.152344 248.140625 35.152344 C 250.910156 35.152344 253.148438 35.976562 254.886719 37.628906 C 256.625 39.28125 257.621094 41.347656 257.871094 43.789062 Z M 238.410156 43.789062 "/>
-      <path d="M 270.921875 67.667969 L 280.511719 67.628906 L 280.511719 7.023438 L 270.921875 7.023438 Z M 270.921875 67.667969 "/>
-      <path fillRule="evenodd" d="M 286.214844 67.628906 L 286.214844 27.226562 L 295.875 27.226562 L 295.875 67.667969 Z M 286.214844 67.628906 "/>
-      <path d="M 327.820312 27.605469 L 327.820312 46.753906 C 327.820312 50.246094 327.003906 53.023438 325.40625 55.089844 C 323.804688 57.152344 321.640625 58.167969 318.90625 58.167969 C 316.347656 58.167969 314.394531 57.304688 313.046875 55.578125 C 311.695312 53.851562 311.023438 51.484375 311.023438 48.441406 L 311.023438 27.679688 L 301.433594 27.679688 L 301.433594 50.359375 C 301.433594 55.726562 302.675781 59.96875 305.128906 63.046875 C 307.578125 66.128906 311.199219 67.667969 315.957031 67.667969 C 320.964844 67.667969 324.90625 65.675781 327.785156 61.660156 L 327.785156 67.628906 L 337.40625 67.667969 L 337.40625 27.679688 Z M 327.820312 27.605469 "/>
-      <path d="M 357.707031 67.59375 C 362.355469 67.59375 366.15625 66.390625 369.140625 63.988281 C 372.121094 61.585938 373.613281 58.542969 373.613281 54.863281 C 373.613281 51.671875 372.726562 49.308594 370.914062 47.730469 C 369.105469 46.152344 366.546875 44.839844 363.246094 43.824219 L 354.082031 41.046875 C 352.058594 40.40625 351.027344 39.394531 351.027344 37.96875 C 351.027344 37.027344 351.527344 36.203125 352.554688 35.488281 C 353.585938 34.777344 354.828125 34.4375 356.285156 34.4375 C 359.90625 34.4375 362.535156 35.941406 364.132812 38.980469 L 372.65625 36.351562 C 371.484375 33.386719 369.425781 31.019531 366.511719 29.21875 C 363.601562 27.417969 360.191406 26.515625 356.320312 26.515625 C 352.238281 26.515625 348.757812 27.640625 345.878906 29.933594 C 343.003906 32.222656 341.546875 34.964844 341.546875 38.191406 C 341.546875 43.261719 344.566406 46.714844 350.640625 48.554688 L 360.011719 51.484375 C 362.746094 52.347656 364.097656 53.625 364.097656 55.3125 C 364.097656 56.441406 363.527344 57.378906 362.394531 58.167969 C 361.257812 58.957031 359.800781 59.332031 357.988281 59.332031 C 355.609375 59.332031 353.585938 58.730469 351.882812 57.527344 C 350.175781 56.328125 349.003906 54.789062 348.367188 52.875 L 339.703125 55.539062 C 340.660156 58.804688 342.789062 61.621094 346.09375 63.988281 C 349.394531 66.351562 353.230469 67.554688 357.597656 67.554688 L 357.707031 67.589844 Z M 357.707031 67.59375 "/>
+      <path d="M 23.464844 26.515625 C 18.527344 26.515625 14.585938 28.503906 11.640625 32.523438 L 11.640625 27.605469 L 2.050781 27.605469 L 2.050781 67.667969 L 11.640625 67.667969 L 11.640625 47.277344 C 11.640625 43.863281 12.457031 41.121094 14.089844 39.054688 C 15.722656 36.992188 17.855469 35.976562 20.519531 35.976562 C 23.109375 35.976562 25.0625 36.839844 26.375 38.566406 C 27.691406 40.296875 28.367188 42.660156 28.367188 45.703125 L 28.367188 67.667969 L 37.988281 67.667969 L 37.988281 43.789062 C 37.988281 38.457031 36.746094 34.25 34.261719 31.171875 C 31.773438 28.09375 28.1875 26.554688 23.464844 26.554688 Z M 23.464844 26.515625 " />
+      <path d="M 61.128906 67.59375 C 65.566406 67.59375 69.332031 66.464844 72.421875 64.25 C 75.511719 62.035156 77.640625 59.445312 78.847656 56.515625 L 70.183594 53.8125 C 68.480469 57.230469 65.496094 58.957031 61.234375 58.957031 C 58.039062 58.957031 55.554688 58.167969 53.742188 56.554688 C 51.929688 54.9375 50.867188 52.796875 50.546875 50.132812 L 79.132812 50.132812 C 79.273438 49.308594 79.34375 48.105469 79.34375 46.527344 C 79.34375 40.785156 77.640625 36.015625 74.230469 32.222656 C 70.824219 28.429688 66.171875 26.554688 60.3125 26.554688 C 54.59375 26.554688 49.941406 28.503906 46.390625 32.410156 C 42.839844 36.316406 41.0625 41.234375 41.0625 47.128906 C 41.0625 53.285156 42.910156 58.242188 46.605469 61.996094 C 50.296875 65.753906 55.089844 67.628906 61.019531 67.628906 Z M 50.476562 43.789062 C 50.757812 41.421875 51.789062 39.394531 53.5625 37.703125 C 55.339844 36.015625 57.542969 35.152344 60.203125 35.152344 C 62.972656 35.152344 65.210938 35.976562 66.953125 37.628906 C 68.691406 39.28125 69.6875 41.347656 69.933594 43.789062 L 50.472656 43.789062 Z M 50.476562 43.789062 " />
+      <path d="M 108.945312 27.605469 L 108.945312 46.753906 C 108.945312 50.246094 108.128906 53.023438 106.53125 55.089844 C 104.933594 57.152344 102.769531 58.167969 100.035156 58.167969 C 97.476562 58.167969 95.523438 57.304688 94.175781 55.578125 C 92.824219 53.851562 92.148438 51.484375 92.148438 48.441406 L 92.148438 27.679688 L 82.5625 27.679688 L 82.5625 50.359375 C 82.5625 55.726562 83.804688 59.96875 86.253906 63.046875 C 88.707031 66.128906 92.328125 67.667969 97.085938 67.667969 C 102.09375 67.667969 106.035156 65.675781 108.910156 61.660156 L 108.910156 67.628906 L 118.535156 67.667969 L 118.535156 27.679688 Z M 108.945312 27.605469 " />
+      <path d="M 140.289062 67.59375 C 145.332031 67.59375 149.273438 65.640625 152.113281 61.734375 L 152.367188 67.667969 L 161.808594 67.667969 L 161.808594 27.605469 L 152.113281 27.605469 L 152.113281 32.296875 C 149.273438 28.429688 145.332031 26.515625 140.289062 26.515625 C 135.140625 26.515625 130.808594 28.46875 127.328125 32.375 C 123.847656 36.277344 122.105469 41.195312 122.105469 47.089844 C 122.105469 52.910156 123.847656 57.792969 127.328125 61.734375 C 130.808594 65.675781 135.105469 67.628906 140.253906 67.628906 Z M 141.921875 58.542969 C 138.902344 58.542969 136.417969 57.453125 134.464844 55.3125 C 132.511719 53.175781 131.554688 50.394531 131.554688 47.015625 C 131.554688 43.675781 132.511719 40.933594 134.464844 38.792969 C 136.417969 36.652344 138.902344 35.601562 141.921875 35.601562 C 144.871094 35.601562 147.355469 36.691406 149.378906 38.832031 C 151.402344 40.972656 152.398438 43.675781 152.398438 46.941406 C 152.398438 50.28125 151.402344 53.023438 149.378906 55.203125 C 147.355469 57.378906 144.871094 58.46875 141.921875 58.46875 Z M 141.921875 58.542969 " />
+      <path d="M 193.542969 27.605469 L 193.542969 46.753906 C 193.542969 50.246094 192.722656 53.023438 191.125 55.089844 C 189.527344 57.152344 187.363281 58.167969 184.628906 58.167969 C 182.070312 58.167969 180.117188 57.304688 178.769531 55.578125 C 177.417969 53.851562 176.746094 51.484375 176.746094 48.441406 L 176.746094 27.679688 L 167.15625 27.679688 L 167.15625 50.359375 C 167.15625 55.726562 168.398438 59.96875 170.851562 63.046875 C 173.300781 66.128906 176.921875 67.667969 181.679688 67.667969 C 186.6875 67.667969 190.628906 65.675781 193.503906 61.660156 L 193.503906 67.667969 L 203.128906 67.628906 L 203.128906 27.679688 Z M 193.542969 27.605469 " />
+      <path d="M 218.527344 33.347656 L 218.527344 27.605469 L 208.9375 27.605469 L 208.9375 67.628906 L 218.527344 67.628906 L 218.527344 49.570312 C 218.527344 44.464844 219.554688 40.859375 221.582031 38.757812 C 223.605469 36.652344 226.621094 35.941406 230.636719 36.617188 L 230.636719 27.078125 C 224.953125 26.253906 220.90625 28.355469 218.492188 33.386719 Z M 218.527344 33.347656 " />
+      <path d="M 249.0625 67.59375 C 253.5 67.59375 257.265625 66.464844 260.355469 64.25 C 263.445312 62.035156 265.574219 59.445312 266.78125 56.515625 L 258.117188 53.8125 C 256.414062 57.230469 253.429688 58.957031 249.167969 58.957031 C 245.972656 58.957031 243.488281 58.167969 241.675781 56.554688 C 239.867188 54.9375 238.800781 52.796875 238.480469 50.132812 L 267.066406 50.132812 C 267.210938 49.308594 267.28125 48.105469 267.28125 46.527344 C 267.28125 40.785156 265.574219 36.015625 262.167969 32.222656 C 258.757812 28.429688 254.105469 26.554688 248.246094 26.554688 C 242.527344 26.554688 237.878906 28.503906 234.324219 32.410156 C 230.773438 36.316406 229 41.234375 229 47.128906 C 229 53.285156 230.847656 58.242188 234.539062 61.996094 C 238.230469 65.753906 243.027344 67.628906 248.957031 67.628906 Z M 238.410156 43.789062 C 238.695312 41.421875 239.722656 39.394531 241.5 37.703125 C 243.273438 36.015625 245.476562 35.152344 248.140625 35.152344 C 250.910156 35.152344 253.148438 35.976562 254.886719 37.628906 C 256.625 39.28125 257.621094 41.347656 257.871094 43.789062 Z M 238.410156 43.789062 " />
+      <path d="M 270.921875 67.667969 L 280.511719 67.628906 L 280.511719 7.023438 L 270.921875 7.023438 Z M 270.921875 67.667969 " />
+      <path fillRule="evenodd" d="M 286.214844 67.628906 L 286.214844 27.226562 L 295.875 27.226562 L 295.875 67.667969 Z M 286.214844 67.628906 " />
+      <path d="M 327.820312 27.605469 L 327.820312 46.753906 C 327.820312 50.246094 327.003906 53.023438 325.40625 55.089844 C 323.804688 57.152344 321.640625 58.167969 318.90625 58.167969 C 316.347656 58.167969 314.394531 57.304688 313.046875 55.578125 C 311.695312 53.851562 311.023438 51.484375 311.023438 48.441406 L 311.023438 27.679688 L 301.433594 27.679688 L 301.433594 50.359375 C 301.433594 55.726562 302.675781 59.96875 305.128906 63.046875 C 307.578125 66.128906 311.199219 67.667969 315.957031 67.667969 C 320.964844 67.667969 324.90625 65.675781 327.785156 61.660156 L 327.785156 67.628906 L 337.40625 67.667969 L 337.40625 27.679688 Z M 327.820312 27.605469 " />
+      <path d="M 357.707031 67.59375 C 362.355469 67.59375 366.15625 66.390625 369.140625 63.988281 C 372.121094 61.585938 373.613281 58.542969 373.613281 54.863281 C 373.613281 51.671875 372.726562 49.308594 370.914062 47.730469 C 369.105469 46.152344 366.546875 44.839844 363.246094 43.824219 L 354.082031 41.046875 C 352.058594 40.40625 351.027344 39.394531 351.027344 37.96875 C 351.027344 37.027344 351.527344 36.203125 352.554688 35.488281 C 353.585938 34.777344 354.828125 34.4375 356.285156 34.4375 C 359.90625 34.4375 362.535156 35.941406 364.132812 38.980469 L 372.65625 36.351562 C 371.484375 33.386719 369.425781 31.019531 366.511719 29.21875 C 363.601562 27.417969 360.191406 26.515625 356.320312 26.515625 C 352.238281 26.515625 348.757812 27.640625 345.878906 29.933594 C 343.003906 32.222656 341.546875 34.964844 341.546875 38.191406 C 341.546875 43.261719 344.566406 46.714844 350.640625 48.554688 L 360.011719 51.484375 C 362.746094 52.347656 364.097656 53.625 364.097656 55.3125 C 364.097656 56.441406 363.527344 57.378906 362.394531 58.167969 C 361.257812 58.957031 359.800781 59.332031 357.988281 59.332031 C 355.609375 59.332031 353.585938 58.730469 351.882812 57.527344 C 350.175781 56.328125 349.003906 54.789062 348.367188 52.875 L 339.703125 55.539062 C 340.660156 58.804688 342.789062 61.621094 346.09375 63.988281 C 349.394531 66.351562 353.230469 67.554688 357.597656 67.554688 L 357.707031 67.589844 Z M 357.707031 67.59375 " />
     </g>
   </svg>
 );
@@ -843,7 +843,7 @@ const Preloader = ({ loading }) => {
   return (
     <div className={`preloader ${!loading ? 'loaded' : ''}`}>
       <div className="loader-content">
-        
+
         {/* Stage 1: The Symbol drawing then fading out */}
         <div className="loader-symbol-wrapper">
           <NeuaureliusSymbolLogo className="loader-svg" />
@@ -859,163 +859,161 @@ const Preloader = ({ loading }) => {
   );
 };
 
-// --- Wireframe Globe Component ---
-// --- Dynamic Background Visualizer ---
+// --- Dynamic Trajectory Visualizer (Parametric 3D Entity) ---
+// --- Dynamic Trajectory Visualizer (Morphing Line Matrix) ---
 const TrajectoryVisualizer = React.memo(({ activeIndex, progress, theme }) => {
-    // Normalize index: if activeIndex is -1 (start), default to 0.
-    const currentIndex = activeIndex < 0 ? 0 : activeIndex;
-    
-    // Resolve theme colors
-    const isDark = theme === 'dark' || (theme === 'system' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    const strokeColor = isDark ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)';
-    const accentColor = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)';
+  const currentIndex = activeIndex < 0 ? 0 : activeIndex;
 
-    // Subtle parallax & rotation effect based on scroll progress
-    const getTransform = (index) => {
-        const isActive = currentIndex === index;
-        const rotate = isActive ? progress * 20 : progress * 20 - 10;
-        const scale = isActive ? 1 : 0.95;
-        const translate = isActive ? 0 : 20;
-        return `rotate(${rotate}deg) scale(${scale}) translateY(${translate}px)`;
-    };
+  // Resolve theme colors dynamically for high-contrast aesthetic
+  const isDark = theme === 'dark' || (theme === 'system' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const color = isDark ? '#ffffff' : '#000000';
 
-    const baseStyle = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: '100%',
-        maxWidth: '700px',
-        marginTop: '-350px',
-        marginLeft: '-350px',
-        transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
-        willChange: 'opacity, transform'
-    };
+  // Number of vectors in the matrix
+  const numLines = 60;
+  const lines = Array.from({ length: numLines });
 
-    return (
-        <div className="globe-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div className="globe-sticky-view" style={{ position: 'relative', width: '100%', height: '100vh' }}>
-                
-                {/* 1. Battery / Energy Storage */}
-                <svg 
-                    style={{ ...baseStyle, opacity: currentIndex === 0 ? 1 : 0, transform: getTransform(0) }} 
-                    viewBox="0 0 100 100" fill="none" stroke={strokeColor} strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"
-                >
-                    <circle cx="50" cy="50" r="40" stroke={accentColor} strokeWidth="0.2" />
-                    <circle cx="50" cy="50" r="45" stroke={accentColor} strokeWidth="0.1" strokeDasharray="1 2" />
-                    
-                    <rect x="30" y="25" width="40" height="50" rx="3" />
-                    <path d="M42 25 v-5 h16 v5" />
-                    <path d="M46 20 v-3 h8 v3" stroke={accentColor}/>
-                    
-                    <rect x="35" y="30" width="30" height="10" rx="1" />
-                    <rect x="35" y="45" width="30" height="10" rx="1" />
-                    <rect x="35" y="60" width="30" height="10" rx="1" />
-                    
-                    <path d="M50 30 v10 M50 45 v10 M50 60 v10" strokeDasharray="1 1" />
-                    <circle cx="50" cy="35" r="1.5" fill={strokeColor} />
-                    <circle cx="50" cy="50" r="1.5" fill={strokeColor} />
-                    <circle cx="50" cy="65" r="1.5" fill={strokeColor} />
-                </svg>
+  // Subtle ambient movement
+  const ambientParallax = progress * 40 - 20;
+  // We only apply heavy rotation to the ASI state to make it look like a floating eye/sphere
+  const containerRotation = currentIndex === 2 ? progress * 90 : progress * 10 - 5;
 
-                {/* 2. Robotic Arm / Biomechanical Precision */}
-                <svg 
-                    style={{ ...baseStyle, opacity: currentIndex === 1 ? 1 : 0, transform: getTransform(1) }} 
-                    viewBox="0 0 100 100" fill="none" stroke={strokeColor} strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"
-                >
-                    <circle cx="50" cy="50" r="40" stroke={accentColor} strokeWidth="0.2" />
-                    <circle cx="50" cy="50" r="30" stroke={accentColor} strokeWidth="0.1" strokeDasharray="2 2" />
-                    
-                    <path d="M30 80 L50 80 L45 70 L35 70 Z" />
-                    <path d="M25 80 h30" strokeDasharray="1 2"/>
-                    
-                    <path d="M40 70 L55 45 M38 68 L53 43" strokeWidth="0.3" />
-                    <circle cx="40" cy="70" r="4" />
-                    
-                    <circle cx="55" cy="45" r="6" />
-                    <circle cx="55" cy="45" r="2" fill={strokeColor} />
-                    
-                    <path d="M55 45 L75 30 M57 47 L77 32" strokeWidth="0.3"/>
-                    
-                    <circle cx="75" cy="30" r="4" />
-                    <path d="M75 30 L85 20 M75 30 L88 35 M80 25 L85 25 M82 32 L87 30" />
-                    <path d="M40 70 Q60 50 75 30" stroke={accentColor} strokeDasharray="1 2" />
-                </svg>
+  return (
+    <div className="globe-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 0, pointerEvents: 'none' }}>
+      <svg
+        width="500"
+        height="500"
+        viewBox="-250 -250 500 500"
+        style={{
+          transform: `translateY(${ambientParallax}px) rotate(${containerRotation}deg)`,
+          transition: 'transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+          overflow: 'visible'
+        }}
+      >
+        {lines.map((_, i) => {
+          let x1, y1, x2, y2, opacity, strokeWidth;
 
-                {/* 3. Brain / Computational Cognition */}
-                <svg 
-                    style={{ ...baseStyle, opacity: currentIndex === 2 ? 1 : 0, transform: getTransform(2) }} 
-                    viewBox="0 0 100 100" fill="none" stroke={strokeColor} strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"
-                >
-                    <circle cx="50" cy="50" r="40" stroke={accentColor} strokeWidth="0.2" />
-                    
-                    <path d="M50 25 C 25 25, 20 45, 30 60 C 25 70, 35 80, 50 75 C 65 80, 75 70, 70 60 C 80 45, 75 25, 50 25 Z" />
-                    <path d="M50 25 V75" strokeDasharray="1 2" />
-                    
-                    <circle cx="40" cy="35" r="1.5" fill={strokeColor} />
-                    <circle cx="60" cy="35" r="1.5" fill={strokeColor} />
-                    <circle cx="35" cy="50" r="1.5" fill={strokeColor} />
-                    <circle cx="65" cy="50" r="1.5" fill={strokeColor} />
-                    <circle cx="45" cy="65" r="1.5" fill={strokeColor} />
-                    <circle cx="55" cy="65" r="1.5" fill={strokeColor} />
-                    <circle cx="50" cy="45" r="2" />
-                    
-                    <path d="M50 25 L40 35 L35 50 L45 65 L50 75" strokeWidth="0.2"/>
-                    <path d="M50 25 L60 35 L65 50 L55 65 L50 75" strokeWidth="0.2"/>
-                    <path d="M40 35 L50 45 L60 35" strokeWidth="0.2"/>
-                    <path d="M35 50 L50 45 L65 50" strokeWidth="0.2"/>
-                    <path d="M45 65 L50 45 L55 65" strokeWidth="0.2"/>
-                    
-                    <circle cx="50" cy="45" r="15" stroke={accentColor} strokeDasharray="1 3" />
-                </svg>
+          // --- STATE 1: HIGH-DENSITY ENERGY (Dense Vertical Capacitor Array) ---
+          if (currentIndex === 0) {
+            const yOffset = -140 + (i * (280 / numLines));
+            // Curve the width to create a cylindrical 3D illusion
+            const width = Math.sin((i / numLines) * Math.PI) * 90;
 
-            </div>
-        </div>
-    );
+            x1 = -width;
+            x2 = width;
+            y1 = yOffset;
+            y2 = yOffset;
+
+            opacity = 0.15 + (Math.sin((i / numLines) * Math.PI) * 0.6);
+            strokeWidth = 2;
+          }
+          // --- STATE 2: BIOMECHANICAL PRECISION (Articulated Geometric Spine) ---
+          else if (currentIndex === 1) {
+            const stage = i % 4; // Forms a diamond/rhombus
+            const group = Math.floor(i / 4);
+            const totalGroups = numLines / 4;
+            const yCenter = -130 + (group * (260 / totalGroups));
+
+            const width = 60;
+            const height = 25;
+
+            if (stage === 0) { x1 = -width; y1 = yCenter; x2 = 0; y2 = yCenter + height; }
+            if (stage === 1) { x1 = 0; y1 = yCenter + height; x2 = width; y2 = yCenter; }
+            if (stage === 2) { x1 = width; y1 = yCenter; x2 = 0; y2 = yCenter - height; }
+            if (stage === 3) { x1 = 0; y1 = yCenter - height; x2 = -width; y2 = yCenter; }
+
+            opacity = 0.4 + (i % 2 === 0 ? 0.2 : 0);
+            strokeWidth = 1.5;
+          }
+          // --- STATE 3: COMPUTATIONAL COGNITION (Expanding Neural Starburst) ---
+          else {
+            const angle = (i * (Math.PI * 2)) / numLines;
+            // Stagger the depths to create complex layers
+            const innerRadius = 25;
+            const outerRadius = (i % 3 === 0) ? 180 : (i % 2 === 0 ? 120 : 70);
+
+            // Add a slight structural twist
+            const twist = (i % 2 === 0) ? 0.15 : -0.15;
+
+            x1 = Math.cos(angle) * innerRadius;
+            y1 = Math.sin(angle) * innerRadius;
+            x2 = Math.cos(angle + twist) * outerRadius;
+            y2 = Math.sin(angle + twist) * outerRadius;
+
+            opacity = 0.2 + (i % 3 === 0 ? 0.4 : 0);
+            strokeWidth = i % 3 === 0 ? 1.5 : 0.75;
+          }
+
+          return (
+            <g key={i} style={{ transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+              <line
+                x1={x1} y1={y1} x2={x2} y2={y2}
+                stroke={color}
+                strokeWidth={strokeWidth}
+                strokeOpacity={opacity}
+                strokeLinecap="round"
+              />
+              {/* Adaptive Data Nodes that appear on the ends of the vectors */}
+              <circle
+                cx={x2} cy={y2}
+                r={currentIndex === 2 ? (i % 3 === 0 ? 2.5 : 1) : (currentIndex === 1 && i % 2 === 0 ? 2 : 0)}
+                fill={color}
+                fillOpacity={opacity * 1.5}
+                style={{ transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)' }}
+              />
+            </g>
+          );
+        })}
+
+        {/* Central Processing Core (Only engages during Kinematics & ASI stages) */}
+        <circle
+          cx="0" cy="0"
+          r={currentIndex === 2 ? 18 : (currentIndex === 1 ? 6 : 0)}
+          fill="none"
+          stroke={color}
+          strokeWidth="1.5"
+          strokeDasharray={currentIndex === 2 ? "none" : "2 4"}
+          style={{
+            opacity: currentIndex === 0 ? 0 : 0.6,
+            transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+            transform: `rotate(${progress * -180}deg)`,
+            transformOrigin: 'center'
+          }}
+        />
+      </svg>
+    </div>
+  );
 });
+
+// --- Trajectory Logic (Ultra-Minimalist Track) ---
 const TrajectoryGroup = ({ theme }) => {
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [drawProgress, setDrawProgress] = useState(0);
 
-  // UPDATED TRAJECTORIES
   const items = useMemo(() => [
-    { 
-      title: "High-Density Energy Storage", 
-      desc: "Advancing battery systems to enable humanoid and large-scale robotic applications to operate with greater efficiency than biological systems, eliminating the need for frequent charging." 
+    {
+      title: "High-Density Energy Storage",
+      desc: "Advancing battery systems to enable humanoid and large-scale robotic applications to operate with greater efficiency than biological systems, eliminating the need for frequent charging."
     },
-    { 
-      title: "Biomechanical Precision", 
-      desc: "Engineering high-fidelity robotic kinematics that are precise, accurate, and completely transcend traditional mechanical limitations." 
+    {
+      title: "Biomechanical Precision",
+      desc: "Engineering high-fidelity robotic kinematics that are precise, accurate, and completely transcend traditional mechanical limitations."
     },
-    { 
-      title: "Computational Cognition & ASI", 
-      desc: "Simulating unprecedented artificial superintelligence through novel technologies that scale true cognitive capability, rather than merely expanding raw computational architecture." 
+    {
+      title: "Computational Cognition & ASI",
+      desc: "Simulating unprecedented artificial superintelligence through novel technologies that scale true cognitive capability, rather than merely expanding raw computational architecture."
     }
   ], []);
 
-  const p0 = { x: 20, y: 0 };
-  const p1 = { x: 120, y: 200 }; 
-  const p2 = { x: -40, y: 400 };
-  const p3 = { x: 20, y: 600 };
-  
-  const calculateCubicBezier = (t, p0, p1, p2, p3) => {
-    const cx = 3 * (p1.x - p0.x);
-    const bx = 3 * (p2.x - p1.x) - cx;
-    const ax = p3.x - p0.x - cx - bx;
+  // Simplified Track Dimensions
+  const trackHeight = 600;
+  const railX = 20; // Centered in a narrow SVG
 
-    const cy = 3 * (p1.y - p0.y);
-    const by = 3 * (p2.y - p1.y) - cy;
-    const ay = p3.y - p0.y - cy - by;
-
-    const x = ax * Math.pow(t, 3) + bx * Math.pow(t, 2) + cx * t + p0.x;
-    const y = ay * Math.pow(t, 3) + by * Math.pow(t, 2) + cy * t + p0.y;
-    return { x, y };
-  };
-
+  // Calculate strict vertical dot positions
   const dotPositions = useMemo(() => {
     return items.map((_, i) => {
       const t = i / (items.length - 1);
-      return calculateCubicBezier(t, p0, p1, p2, p3);
+      return { x: railX, y: t * trackHeight };
     });
   }, [items]);
 
@@ -1023,127 +1021,82 @@ const TrajectoryGroup = ({ theme }) => {
     let rafId;
     const handleScroll = () => {
       if (!containerRef.current) return;
-      
       if (rafId) return;
 
       rafId = requestAnimationFrame(() => {
         if (!containerRef.current) return;
-        
+
         const rect = containerRef.current.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
-        
+
         const startTrigger = viewportHeight * 0.5;
         const totalScrollableHeight = rect.height;
         const distScrolled = startTrigger - rect.top;
-        
+
         let progress = distScrolled / (totalScrollableHeight - viewportHeight * 0.5);
-        
+
         progress = Math.max(0, Math.min(1, progress));
         setDrawProgress(progress);
 
         let currentIdx = -1;
-        
+
         items.forEach((_, idx) => {
-            const itemT = idx / (items.length - 1);
-            if (Math.abs(progress - itemT) < 0.15) {
-                currentIdx = idx;
-            }
+          const itemT = idx / (items.length - 1);
+          if (Math.abs(progress - itemT) < 0.15) {
+            currentIdx = idx;
+          }
         });
-        
+
         if (progress > 0.95) currentIdx = items.length - 1;
-        
+
         setActiveIndex(currentIdx);
         rafId = null;
       });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); 
+    handleScroll();
     return () => {
-        window.removeEventListener('scroll', handleScroll);
-        if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [items]);
 
-  const tipPoint = calculateCubicBezier(drawProgress, p0, p1, p2, p3);
-  
   // Resolve theme color for SVG
   const isDark = theme === 'dark' || (theme === 'system' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  
   const mainColor = isDark ? '#ffffff' : '#000000';
-  const faintColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)';
+  const faintColor = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.15)';
+
+  // Calculate exact cursor Y based on scroll
+  const cursorY = drawProgress * trackHeight;
 
   return (
     <div ref={containerRef} className="trajectory-wrapper">
-      <TrajectoryVisualizer activeIndex={activeIndex} progress={drawProgress} theme={theme} />
 
-      <div className="svg-container">
-        <svg width="100%" height="100%" viewBox="-50 0 200 600" preserveAspectRatio="xMidYMid meet" style={{ overflow: 'visible' }}>
-          <defs>
-            <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor={mainColor} stopOpacity="0" />
-              <stop offset="50%" stopColor={mainColor} stopOpacity="0.8" />
-              <stop offset="100%" stopColor={mainColor} stopOpacity="0" />
-            </linearGradient>
-            
-            <filter id="glow-heavy" x="-100%" y="-100%" width="300%" height="300%">
-                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                <feMerge>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-            </filter>
-          </defs>
-          
-          <path 
-            d={`M ${p0.x} ${p0.y} C ${p1.x} ${p1.y}, ${p2.x} ${p2.y}, ${p3.x} ${p3.y}`} 
-            fill="none" 
-            stroke={faintColor} 
-            strokeWidth="1" 
-          />
-          
-          <path 
-            d={`M ${p0.x} ${p0.y} C ${p1.x} ${p1.y}, ${p2.x} ${p2.y}, ${p3.x} ${p3.y}`} 
-            fill="none" 
-            stroke={mainColor} 
-            strokeWidth="2" 
-            pathLength="1"
-            strokeDasharray="1"
-            strokeDashoffset={1 - drawProgress}
-            strokeLinecap="round"
-            style={{ transition: 'stroke-dashoffset 0.1s linear' }}
-          />
-          
-          {drawProgress > 0.01 && drawProgress < 0.99 && (
-              <g transform={`translate(${tipPoint.x}, ${tipPoint.y})`}>
-                  <circle r="4" fill={mainColor} filter="url(#glow-heavy)" />
-                  <circle r="8" fill="none" stroke={mainColor} strokeOpacity="0.3" strokeWidth="1">
-                      <animate attributeName="r" from="4" to="12" dur="1.5s" repeatCount="indefinite" />
-                      <animate attributeName="opacity" from="0.8" to="0" dur="1.5s" repeatCount="indefinite" />
-                  </circle>
-              </g>
-          )}
 
+      {/* Ultra-narrow SVG container just for the straight line */}
+      <div className="svg-container" style={{ width: '40px' }}>
+        <svg width="100%" height="100%" viewBox="0 -20 40 640" preserveAspectRatio="xMidYMid meet" style={{ overflow: 'visible' }}>
+
+          {/* Faint Background Track */}
+          <line x1={railX} y1="0" x2={railX} y2={trackHeight} stroke={faintColor} strokeWidth="2" />
+
+          {/* Active Progress Track */}
+          <line x1={railX} y1="0" x2={railX} y2={cursorY} stroke={mainColor} strokeWidth="2" style={{ transition: 'y2 0.1s linear' }} />
+
+          {/* Simple Nodes */}
           {dotPositions.map((pos, i) => {
             const isActive = activeIndex === i;
             const isReached = drawProgress >= (i / (items.length - 1)) - 0.05;
-            
-            const dotFill = isActive ? mainColor : (isDark ? "#000" : "#fff");
-            const dotStroke = mainColor;
 
             return (
-              <g key={i} style={{ 
-                  opacity: isReached ? 1 : 0.2, 
-                  transition: 'opacity 0.4s ease',
-                  transformOrigin: `${pos.x}px ${pos.y}px`
-                }}>
-                <circle 
-                   cx={pos.x} cy={pos.y} r={isActive ? 6 : 3} 
-                   fill={dotFill} 
-                   stroke={dotStroke} 
-                   strokeWidth="2" 
-                   filter={isActive ? "url(#glow-heavy)" : ""}
-                   style={{ transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}
+              <g key={`node-${i}`} transform={`translate(${pos.x}, ${pos.y})`}>
+                <circle
+                  cx="0" cy="0" r={isActive ? 5 : 4}
+                  fill={isReached ? mainColor : 'var(--bg-color)'}
+                  stroke={isReached ? mainColor : faintColor}
+                  strokeWidth="2"
+                  style={{ transition: 'all 0.3s ease' }}
                 />
               </g>
             );
@@ -1151,14 +1104,15 @@ const TrajectoryGroup = ({ theme }) => {
         </svg>
       </div>
 
-      <div className="trajectory-list">
+      {/* Text perfectly aligned next to the line */}
+      <div className="trajectory-list" style={{ paddingLeft: '2rem' }}>
         {items.map((item, index) => (
-          <div key={index} 
-               className={`trajectory-item ${activeIndex === index ? 'active' : ''}`}>
-             <span className="t-title" style={{ color: activeIndex === index ? 'var(--text-primary)' : 'var(--text-muted)' }}>
-                {item.title}
-             </span>
-             <p className="t-desc">{item.desc}</p>
+          <div key={index}
+            className={`trajectory-item ${activeIndex === index ? 'active' : ''}`}>
+            <span className="t-title" style={{ color: activeIndex === index ? 'var(--text-primary)' : 'var(--text-muted)' }}>
+              {item.title}
+            </span>
+            <p className="t-desc">{item.desc}</p>
           </div>
         ))}
       </div>
@@ -1174,7 +1128,7 @@ const Navigation = ({ theme, toggleTheme }) => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       setScrolled(currentScrollY > 50);
 
       if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
@@ -1194,30 +1148,30 @@ const Navigation = ({ theme, toggleTheme }) => {
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-        const offset = 80; 
-        const bodyRect = document.body.getBoundingClientRect().top;
-        const elementRect = element.getBoundingClientRect().top;
-        const elementPosition = elementRect - bodyRect;
-        const offsetPosition = elementPosition - offset;
-        
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-        });
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   };
 
   // Helper to render the correct icon based on current theme state
   const getThemeIcon = () => {
-      if (theme === 'light') return <Sun size={20} />;
-      if (theme === 'dark') return <Moon size={20} />;
-      return <Monitor size={20} />; // System icon
+    if (theme === 'light') return <Sun size={20} />;
+    if (theme === 'dark') return <Moon size={20} />;
+    return <Monitor size={20} />; // System icon
   };
-  
+
   const getThemeLabel = () => {
-      if (theme === 'light') return 'Light Mode';
-      if (theme === 'dark') return 'Dark Mode';
-      return 'System Default';
+    if (theme === 'light') return 'Light Mode';
+    if (theme === 'dark') return 'Dark Mode';
+    return 'System Default';
   };
 
   const navItems = [
@@ -1241,7 +1195,7 @@ const Navigation = ({ theme, toggleTheme }) => {
                 {item.label}
               </button>
             ))}
-            
+
             {/* Theme Toggle Button */}
             <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme" title={`Current: ${theme}`}>
               {getThemeIcon()}
@@ -1260,26 +1214,26 @@ const Navigation = ({ theme, toggleTheme }) => {
             key={item.id}
             onClick={() => scrollToSection(item.id)}
             className="mobile-link"
-            style={{ 
-                opacity: mobileMenuOpen ? 1 : 0, 
-                transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
-                transition: `all 0.5s ease ${index * 0.1}s` 
+            style={{
+              opacity: mobileMenuOpen ? 1 : 0,
+              transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+              transition: `all 0.5s ease ${index * 0.1}s`
             }}
           >
             {item.label}
           </button>
         ))}
 
-        <button 
-            className="mobile-theme-toggle"
-            onClick={toggleTheme}
-            style={{ 
-                opacity: mobileMenuOpen ? 1 : 0, 
-                transition: `opacity 0.5s ease 0.4s` 
-            }}
+        <button
+          className="mobile-theme-toggle"
+          onClick={toggleTheme}
+          style={{
+            opacity: mobileMenuOpen ? 1 : 0,
+            transition: `opacity 0.5s ease 0.4s`
+          }}
         >
-            {getThemeIcon()}
-            <span style={{ marginLeft: '10px' }}>{getThemeLabel()}</span>
+          {getThemeIcon()}
+          <span style={{ marginLeft: '10px' }}>{getThemeLabel()}</span>
         </button>
       </div>
     </>
@@ -1292,30 +1246,30 @@ const Hero = () => {
       <div className="container">
         <RevealOnScroll delay={100}>
           <h1 className="hero-title">
-            Architecting <br/>
-            <span style={{color: 'var(--text-muted)'}}>Embodied Reality.</span>
+            Architecting <br />
+            <span style={{ color: 'var(--text-muted)' }}>Embodied Reality.</span>
           </h1>
         </RevealOnScroll>
-        
+
         <div className="hero-grid">
           <RevealOnScroll delay={300} className="hero-col">
-              <span className="label-text">Foundational Systems</span>
-              <p className="desc-text">
-                  Neuaurelius is an engineering organization dedicated to building the physical and cognitive infrastructure for intelligent machines.
-              </p>
+            <span className="label-text">Foundational Systems</span>
+            <p className="desc-text">
+              Neuaurelius is an engineering organization dedicated to building the physical and cognitive infrastructure for intelligent machines.
+            </p>
           </RevealOnScroll>
 
           <RevealOnScroll delay={500} className="hero-col">
-              <span className="label-text">Autonomous Design</span>
-              <p className="desc-text">
-                  Moving beyond software abstractions to design complete, integrated autonomous units capable of physical interaction.
-              </p>
+            <span className="label-text">Autonomous Design</span>
+            <p className="desc-text">
+              Moving beyond software abstractions to design complete, integrated autonomous units capable of physical interaction.
+            </p>
           </RevealOnScroll>
         </div>
 
         <RevealOnScroll delay={700} className="hero-footer">
-          <div className="meta-label">Est. 2023 &mdash; Home - Barddhaman</div>
-          <button 
+          <div className="meta-label">Est. 2023</div>
+          <button
             onClick={() => document.getElementById('vision').scrollIntoView({ behavior: 'smooth' })}
             className="scroll-btn"
           >
@@ -1334,11 +1288,11 @@ const Vision = ({ theme }) => {
       <div className="container">
         <RevealOnScroll>
           <div className="section-header">
-             <div className="line-accent"></div>
-             <span className="section-title">01 &mdash; Manifesto</span>
+            <div className="line-accent"></div>
+            <span className="section-title">01 &mdash; Manifesto</span>
           </div>
         </RevealOnScroll>
-        
+
         <div className="manifesto-grid">
           <div>
             <RevealOnScroll>
@@ -1376,13 +1330,13 @@ const Contact = () => {
   return (
     <section id="contact" style={{ justifyContent: 'space-between' }}>
       <div className="container" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-         <RevealOnScroll>
-            <div className="section-header">
-               <div className="line-accent"></div>
-               <span className="section-title">02 &mdash; Contact</span>
-            </div>
-         </RevealOnScroll>
-        
+        <RevealOnScroll>
+          <div className="section-header">
+            <div className="line-accent"></div>
+            <span className="section-title">02 &mdash; Contact</span>
+          </div>
+        </RevealOnScroll>
+
         <RevealOnScroll delay={200}>
           <p className="inquiry-text">
             We welcome inquiries regarding research collaboration and engineering partnerships.
@@ -1400,7 +1354,7 @@ const Contact = () => {
               <p className="location-sub" style={{ marginTop: '1rem' }}>General Inquiries</p>
             </div>
           </RevealOnScroll>
-          
+
           <RevealOnScroll delay={400}>
             <div>
               <span className="contact-label">Location</span>
@@ -1412,13 +1366,13 @@ const Contact = () => {
       </div>
 
       <div className="container">
-          <RevealOnScroll delay={600} className="footer">
-            <div className="footer-text">Neuaurelius Pvt Ltd</div>
-            <div className="footer-right footer-text">
-                <span>&copy; 2024</span>
-                <span className="footer-copy">All Rights Reserved</span>
-            </div>
-          </RevealOnScroll>
+        <RevealOnScroll delay={600} className="footer">
+          <div className="footer-text">Neuaurelius Pvt Ltd</div>
+          <div className="footer-right footer-text">
+            <span>&copy; 2024</span>
+            <span className="footer-copy">All Rights Reserved</span>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );
@@ -1428,12 +1382,12 @@ const Contact = () => {
 const App = () => {
   // Theme State: 'dark' | 'light' | 'system'
   const [theme, setTheme] = useState(() => {
-      // Check local storage or default to system
-      if (typeof window !== 'undefined') {
-          const saved = localStorage.getItem('theme');
-          return saved || 'system';
-      }
-      return 'system';
+    // Check local storage or default to system
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      return saved || 'system';
+    }
+    return 'system';
   });
 
   // Preloader State
@@ -1441,45 +1395,45 @@ const App = () => {
 
   // Apply theme to document
   useEffect(() => {
-      const root = document.documentElement;
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const root = document.documentElement;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-      const applyTheme = (targetTheme) => {
-          let visualTheme = targetTheme;
-          
-          if (targetTheme === 'system') {
-              visualTheme = mediaQuery.matches ? 'dark' : 'light';
-          }
-          
-          root.setAttribute('data-theme', visualTheme);
-      };
+    const applyTheme = (targetTheme) => {
+      let visualTheme = targetTheme;
 
-      applyTheme(theme);
-      localStorage.setItem('theme', theme);
-
-      // Listener for system changes when in system mode
-      const handleSystemChange = () => {
-          if (theme === 'system') {
-              applyTheme('system');
-          }
-      };
-
-      if (theme === 'system') {
-          mediaQuery.addEventListener('change', handleSystemChange);
+      if (targetTheme === 'system') {
+        visualTheme = mediaQuery.matches ? 'dark' : 'light';
       }
 
-      return () => {
-          mediaQuery.removeEventListener('change', handleSystemChange);
-      };
+      root.setAttribute('data-theme', visualTheme);
+    };
+
+    applyTheme(theme);
+    localStorage.setItem('theme', theme);
+
+    // Listener for system changes when in system mode
+    const handleSystemChange = () => {
+      if (theme === 'system') {
+        applyTheme('system');
+      }
+    };
+
+    if (theme === 'system') {
+      mediaQuery.addEventListener('change', handleSystemChange);
+    }
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleSystemChange);
+    };
   }, [theme]);
 
   // Handle Toggle Cycle: Dark -> Light -> System -> Dark
   const toggleTheme = () => {
-      setTheme((prev) => {
-          if (prev === 'dark') return 'light';
-          if (prev === 'light') return 'system';
-          return 'dark';
-      });
+    setTheme((prev) => {
+      if (prev === 'dark') return 'light';
+      if (prev === 'light') return 'system';
+      return 'dark';
+    });
   };
 
   useEffect(() => {
@@ -1494,7 +1448,7 @@ const App = () => {
   return (
     <>
       <GlobalStyles />
-      
+
       {/* Preloader overlay (Always dark for brand consistency) */}
       <Preloader loading={isLoading} />
 
