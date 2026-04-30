@@ -1293,7 +1293,7 @@ const Contact = () => {
      <RevealOnScroll delay={600} className="footer">
   {/* Left: Company & Registration */}
   <div className="footer-left">
-    <div className="footer-text">Neuaurelius Pvt Ltd</div>
+    <div className="footer-text">Neuaurelius</div>
     <div className="footer-text footer-subtext">UDYAM-WB-03-0101181</div>
   </div>
 
