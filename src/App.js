@@ -759,13 +759,15 @@ const GlobalStyles = () => (
     `}</style>
   </>
 );
-
 // --- Animation Utility ---
 const RevealOnScroll = ({ children, delay = 0, className = "" }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
+    // 1. Capture the current value of the ref
+    const currentElement = ref.current; 
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -775,8 +777,18 @@ const RevealOnScroll = ({ children, delay = 0, className = "" }) => {
       },
       { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
     );
-    if (ref.current) observer.observe(ref.current);
-    return () => ref.current && observer.unobserve(ref.current);
+    
+    // 2. Use the captured variable to observe
+    if (currentElement) {
+      observer.observe(currentElement); 
+    }
+
+    // 3. Use the captured variable in the cleanup function
+    return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement); 
+      }
+    };
   }, []);
 
   return (
@@ -789,7 +801,6 @@ const RevealOnScroll = ({ children, delay = 0, className = "" }) => {
     </div>
   );
 };
-
 // --- Logos ---
 
 // 1. Original Symbol Logo (For Preloader Animation)
