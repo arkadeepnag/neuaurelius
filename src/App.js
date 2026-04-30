@@ -646,31 +646,69 @@ const GlobalStyles = () => (
       }
 
       /* --- Footer --- */
-      .footer {
-        margin-top: 6rem;
-        padding: 3rem 0;
-        border-top: 1px solid var(--border-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+    /* --- Footer --- */
+.footer {
+  margin-top: 6rem;
+  padding: 3rem 0;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Added for better mobile responsiveness */
+  gap: 2rem;
+}
 
-      .footer-text {
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--text-muted);
-      }
-        
-      .footer-right {
-        display: flex;
-        gap: 2rem;
-      }
-        
-      .footer-copy {
-        color: var(--text-secondary);
-      }
+/* Grouped left section */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Slightly different styling for the Udyam number */
+.footer-subtext {
+  color: var(--text-secondary);
+  letter-spacing: 0.15em; 
+}
+
+/* Center Social Links */
+.footer-socials {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.footer-social-link {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer-social-link:hover {
+  opacity: 0.7;
+}
+
+/* Grouped right section */
+.footer-right {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-copy {
+  color: var(--text-secondary);
+}
 
       /* --- Responsive Breakpoints --- */
       @media (max-width: 1024px) {
@@ -1252,13 +1290,48 @@ const Contact = () => {
       </div>
 
       <div className="container">
-        <RevealOnScroll delay={600} className="footer">
-          <div className="footer-text">Neuaurelius Pvt Ltd</div>
-          <div className="footer-right footer-text">
-            <span>&copy; 2024</span>
-            <span className="footer-copy">All Rights Reserved</span>
-          </div>
-        </RevealOnScroll>
+     <RevealOnScroll delay={600} className="footer">
+  {/* Left: Company & Registration */}
+  <div className="footer-left">
+    <div className="footer-text">Neuaurelius Pvt Ltd</div>
+    <div className="footer-text footer-subtext">UDYAM-WB-03-0101181</div>
+  </div>
+
+  {/* Center: Social Media Links */}
+  <div className="footer-socials">
+    <a 
+      href="https://x.com/neuaurelius" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="footer-social-link"
+    >
+      Twitter
+    </a>
+    <a 
+      href="https://instagram.com/neuaurelius" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="footer-social-link"
+    >
+      Instagram
+    </a>
+    <a 
+      href="https://linkedin.com/company/neuaurelius" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      className="footer-social-link"
+    >
+      LinkedIn
+    </a>
+  </div>
+
+  {/* Right: Copyright Info */}
+  <div className="footer-right footer-text">
+    {/* Optional: using JS to automatically grab the current year */}
+    <span>&copy; {new Date().getFullYear()}</span> 
+    <span className="footer-copy">All Rights Reserved</span>
+  </div>
+</RevealOnScroll>
       </div>
     </section>
   );
