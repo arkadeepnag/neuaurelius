@@ -484,47 +484,48 @@ const TrajectoryGroup = () => {
 };
 
 
-const researchCategories = [
-  {
-    id: "index",
-    category: "Index",
-    papers: [],
-    preview: { title: "Research Index", desc: "View our complete catalog of research papers, architectural overviews, and system design documents." }
-  },
-  {
-    id: "energy",
-    category: "Energy Storage",
-    papers: [
-      { title: "Review paper on Aerogel based batteries", desc: "A comprehensive review of aerogel structures for next-generation solid-state battery electrolytes and anode matrices." }
-    ],
-    preview: { title: "Energy Storage", desc: "Exploring high-density, rapidly discharging power sources to fulfill the rigorous energy demands of continuous autonomous operation." }
-  },
-  {
-    id: "ai",
-    category: "AI Systems",
-    papers: [
-      { title: "ARC 2026", desc: "Autonomous Robotics Control 2026: A novel framework for decentralized multi-agent reinforcement learning." }
-    ],
-    preview: { title: "AI Systems", desc: "Cognitive architectures simulating advanced reasoning, real-time spatial awareness, and decentralized learning." }
-  },
-  {
-    id: "biomechanics",
-    category: "Biomechanics",
-    papers: [],
-    preview: { title: "Biomechanics", desc: "Engineering high-fidelity robotic kinematics that mirror and exceed the capabilities of organic biological systems." }
-  }
-];
-
-const validCategories = researchCategories.filter(g => g.papers && g.papers.length > 0);
+// RESEARCH CATEGORIES - COMMENTED OUT
+// const researchCategories = [
+//   {
+//     id: "index",
+//     category: "Index",
+//     papers: [],
+//     preview: { title: "Research Index", desc: "View our complete catalog of research papers, architectural overviews, and system design documents." }
+//   },
+//   {
+//     id: "energy",
+//     category: "Energy Storage",
+//     papers: [
+//       { title: "Review paper on Aerogel based batteries", desc: "A comprehensive review of aerogel structures for next-generation solid-state battery electrolytes and anode matrices." }
+//     ],
+//     preview: { title: "Energy Storage", desc: "Exploring high-density, rapidly discharging power sources to fulfill the rigorous energy demands of continuous autonomous operation." }
+//   },
+//   {
+//     id: "ai",
+//     category: "AI Systems",
+//     papers: [
+//       { title: "ARC 2026", desc: "Autonomous Robotics Control 2026: A novel framework for decentralized multi-agent reinforcement learning." }
+//     ],
+//     preview: { title: "AI Systems", desc: "Cognitive architectures simulating advanced reasoning, real-time spatial awareness, and decentralized learning." }
+//   },
+//   {
+//     id: "biomechanics",
+//     category: "Biomechanics",
+//     papers: [],
+//     preview: { title: "Biomechanics", desc: "Engineering high-fidelity robotic kinematics that mirror and exceed the capabilities of organic biological systems." }
+//   }
+// ];
+//
+// const validCategories = researchCategories.filter(g => g.papers && g.papers.length > 0);
 
 const Navigation = ({ theme, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileResearchOpen, setMobileResearchOpen] = useState(false);
+  // const [mobileResearchOpen, setMobileResearchOpen] = useState(false);
 
-  const [isResearchHovered, setIsResearchHovered] = useState(false);
-  const [hoveredPreview, setHoveredPreview] = useState(validCategories.length > 0 ? validCategories[0].preview : researchCategories[0].preview);
+  // const [isResearchHovered, setIsResearchHovered] = useState(false);
+  // const [hoveredPreview, setHoveredPreview] = useState(validCategories.length > 0 ? validCategories[0].preview : researchCategories[0].preview);
   const hoverTimeoutRef = useRef(null);
 
   const lastScrollY = useRef(0);
@@ -545,10 +546,17 @@ const Navigation = ({ theme, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // If the navbar is hidden (user scrolled down), ensure the Research mega-menu closes
+  // useEffect(() => {
+  //   if (hidden) {
+  //     setIsResearchHovered(false);
+  //   }
+  // }, [hidden]);
+
   const scrollToSection = (id) => {
     setMobileMenuOpen(false);
-    setMobileResearchOpen(false);
-    setIsResearchHovered(false);
+    // setMobileResearchOpen(false);
+    // setIsResearchHovered(false);
     const element = document.getElementById(id);
     if (element) {
       const offset = 80;
@@ -564,16 +572,16 @@ const Navigation = ({ theme, toggleTheme }) => {
     }
   };
 
-  const handleMenuEnter = () => {
-    clearTimeout(hoverTimeoutRef.current);
-    setIsResearchHovered(true);
-  };
+  // const handleMenuEnter = () => {
+  //   clearTimeout(hoverTimeoutRef.current);
+  //   setIsResearchHovered(true);
+  // };
 
-  const handleMenuLeave = () => {
-    hoverTimeoutRef.current = setTimeout(() => {
-      setIsResearchHovered(false);
-    }, 150);
-  };
+  // const handleMenuLeave = () => {
+  //   hoverTimeoutRef.current = setTimeout(() => {
+  //     setIsResearchHovered(false);
+  //   }, 150);
+  // };
 
   const getThemeIcon = () => {
     if (theme === 'light') return <Sun size={20} />;
@@ -590,7 +598,7 @@ const Navigation = ({ theme, toggleTheme }) => {
   const navItems = [
     { id: 'home', label: 'Index' },
     { id: 'vision', label: 'Aim' },
-    { id: 'research', label: 'Research' },
+    // { id: 'research', label: 'Research' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -600,7 +608,6 @@ const Navigation = ({ theme, toggleTheme }) => {
 
         <nav
           className={`w-full relative transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto ${scrolled ? 'max-w-[1000px] bg-theme border border-theme rounded-[32px] shadow-xl shadow-black/5' : 'max-w-[1400px] bg-transparent border-transparent'}`}
-          onMouseLeave={handleMenuLeave}
         >
           <div className={`w-full relative flex justify-between items-center ${scrolled ? 'py-4 px-6 md:px-8' : 'py-6 md:py-8 px-6 md:px-8'}`}>
             <button onClick={() => scrollToSection('home')} className={`z-[1001] flex items-center transition-transform duration-500 hover:scale-105 hover:opacity-80 focus:outline-none ${scrolled ? 'text-theme' : 'text-white'}`}>
@@ -610,17 +617,17 @@ const Navigation = ({ theme, toggleTheme }) => {
             <div className="flex gap-8 items-center max-md:hidden h-full">
               {navItems.map((item) => {
 
-                // Research Menu Dropdown Trigger
-                if (item.id === 'research') {
-                  return (
-                    <div key={item.id} className="relative flex items-center h-full" onMouseEnter={handleMenuEnter}>
-                      <button onClick={() => scrollToSection(item.id)} className={`text-[0.7rem] font-semibold tracking-[0.15em] uppercase relative transition-all duration-300 focus:outline-none ${scrolled ? 'text-theme-muted hover:text-theme' : 'text-white/80 hover:text-white'} ${isResearchHovered ? (scrolled ? '!text-theme' : '!text-white') : ''}`}>
-                        {item.label}
-                        <span className={`absolute -bottom-1.5 left-0 h-[1.5px] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${scrolled ? 'bg-theme' : 'bg-white'} ${isResearchHovered ? 'w-full' : 'w-0'}`}></span>
-                      </button>
-                    </div>
-                  );
-                }
+                // Research Menu Dropdown Trigger - COMMENTED OUT
+                // if (item.id === 'research') {
+                //   return (
+                //     <div key={item.id} className="relative flex items-center h-full" onMouseEnter={handleMenuEnter} onMouseLeave={handleMenuLeave}>
+                //       <button onClick={() => scrollToSection(item.id)} className={`text-[0.7rem] font-semibold tracking-[0.15em] uppercase relative transition-all duration-300 focus:outline-none ${scrolled ? 'text-theme-muted hover:text-theme' : 'text-white/80 hover:text-white'} ${isResearchHovered ? (scrolled ? '!text-theme' : '!text-white') : ''}`}>
+                //         {item.label}
+                //         <span className={`absolute -bottom-1.5 left-0 h-[1.5px] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${scrolled ? 'bg-theme' : 'bg-white'} ${isResearchHovered ? 'w-full' : 'w-0'}`}></span>
+                //       </button>
+                //     </div>
+                //   );
+                // }
 
                 return (
                   <button key={item.id} onClick={() => scrollToSection(item.id)} className={`group text-[0.7rem] font-semibold tracking-[0.15em] uppercase relative transition-all duration-300 focus:outline-none ${scrolled ? 'text-theme-muted hover:text-theme' : 'text-white/80 hover:text-white'}`}>
@@ -642,10 +649,11 @@ const Navigation = ({ theme, toggleTheme }) => {
             </button>
           </div>
 
-          {/* Desktop Mega Menu Constraint & Centering */}
-          <div
+          {/* Desktop Mega Menu Constraint & Centering - COMMENTED OUT */}
+          {/* <div
             className={`absolute top-[100%] left-1/2 -translate-x-1/2 w-full max-w-[1000px] pt-6 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-[1002] hidden md:block ${isResearchHovered ? 'opacity-100 translate-y-0 pointer-events-auto visible' : 'opacity-0 translate-y-4 pointer-events-none invisible'}`}
             onMouseEnter={handleMenuEnter}
+            onMouseLeave={handleMenuLeave}
           >
             <div className={`w-full rounded-[24px] p-8 md:p-10 shadow-2xl flex gap-12 text-left transition-colors duration-500 bg-theme border ${scrolled ? 'border-theme' : 'border-[var(--border-color)]'}`}>
 
@@ -654,10 +662,6 @@ const Navigation = ({ theme, toggleTheme }) => {
                 <h4 className="text-2xl font-semibold text-theme mb-4 font-[family:var(--font-heading)] leading-tight">{hoveredPreview.title}</h4>
                 <p className="text-sm text-theme-secondary leading-[1.6] font-light">{hoveredPreview.desc}</p>
 
-                <div className="mt-8 flex items-center gap-2 text-[0.7rem] font-bold tracking-[0.2em] uppercase text-theme-muted cursor-pointer hover:text-theme transition-colors">
-                  <span>Explore</span>
-                  <ArrowUpRight size={14} />
-                </div>
               </div>
 
               <div className="w-2/3 grid grid-cols-2 gap-x-12 gap-y-10">
@@ -684,30 +688,30 @@ const Navigation = ({ theme, toggleTheme }) => {
                 ))}
               </div>
             </div>
-          </div>
+          </div> */}
         </nav>
       </div>
 
-      {/* Full-Screen Mobile Menu with Interactive Research Accordion */}
+      {/* Full-Screen Mobile Menu with Interactive Research Accordion - COMMENTED OUT */}
       <div className={`fixed inset-0 bg-theme z-[999] flex flex-col justify-center items-center gap-8 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${mobileMenuOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'}`}>
         {navItems.map((item, index) => {
-          if (item.id === 'research') {
-            return (
-              <div key={item.id} className="flex flex-col items-center" style={{ opacity: mobileMenuOpen ? 1 : 0, transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)', transition: `all 0.5s ease ${index * 0.1}s` }}>
-                <button onClick={() => setMobileResearchOpen(!mobileResearchOpen)} className="text-2xl md:text-3xl uppercase font-extrabold tracking-wide text-theme flex items-center gap-2 focus:outline-none">
-                  {item.label}
-                  <ChevronRight size={24} className={`transition-transform duration-300 ${mobileResearchOpen ? 'rotate-90' : ''}`} />
-                </button>
-                <div className={`flex flex-col items-center gap-6 overflow-hidden transition-all duration-500 ${mobileResearchOpen ? 'max-h-[400px] opacity-100 mt-6' : 'max-h-0 opacity-0 mt-0'}`}>
-                  {validCategories.map((cat, idx) => (
-                    <button key={idx} onClick={() => scrollToSection('research')} className="text-sm font-bold tracking-[0.2em] uppercase text-theme-muted hover:text-theme transition-colors">
-                      {cat.category}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            );
-          }
+          // if (item.id === 'research') {
+          //   return (
+          //     <div key={item.id} className="flex flex-col items-center" style={{ opacity: mobileMenuOpen ? 1 : 0, transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(20px)', transition: `all 0.5s ease ${index * 0.1}s` }}>
+          //       <button onClick={() => setMobileResearchOpen(!mobileResearchOpen)} className="text-2xl md:text-3xl uppercase font-extrabold tracking-wide text-theme flex items-center gap-2 focus:outline-none">
+          //         {item.label}
+          //         <ChevronRight size={24} className={`transition-transform duration-300 ${mobileResearchOpen ? 'rotate-90' : ''}`} />
+          //       </button>
+          //       <div className={`flex flex-col items-center gap-6 overflow-hidden transition-all duration-500 ${mobileResearchOpen ? 'max-h-[400px] opacity-100 mt-6' : 'max-h-0 opacity-0 mt-0'}`}>
+          //         {validCategories.map((cat, idx) => (
+          //           <button key={idx} onClick={() => scrollToSection('research')} className="text-sm font-bold tracking-[0.2em] uppercase text-theme-muted hover:text-theme transition-colors">
+          //             {cat.category}
+          //           </button>
+          //         ))}
+          //       </div>
+          //     </div>
+          //   );
+          // }
           return (
             <button
               key={item.id}
@@ -783,57 +787,58 @@ const Vision = () => {
   );
 };
 
-const Research = () => {
-  const researchItems = [
-    {
-      title: 'ARC 2026',
-      category: 'AI Systems',
-      desc: 'A focused research track exploring advanced robotics and control systems for next-generation embodied intelligence.',
-    },
-    {
-      title: 'Review paper on Aerogel based batteries',
-      category: 'Energy Storage',
-      desc: 'A review-oriented subsection covering aerogel-based battery architectures, material design, and performance directions.',
-    },
-  ];
-
-  return (
-    <section id="research" className="min-h-screen flex flex-col justify-center py-24 relative overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-8 w-full relative">
-        <RevealOnScroll>
-          <div className="flex items-center gap-4 mb-12 md:mb-16">
-            <div className="h-px w-[30px] bg-[var(--text-muted)]"></div>
-            <span className="text-[0.65rem] md:text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-theme-muted">02 &mdash; Research</span>
-          </div>
-        </RevealOnScroll>
-
-        <RevealOnScroll>
-          <h3 className="text-[clamp(2.2rem,6vw,4.5rem)] leading-[1.15] md:leading-[1.05] font-medium tracking-[-0.03em] text-theme transition-all duration-700 hover:tracking-[-0.01em] cursor-default mb-14 md:mb-20">
-            Current research directions.
-          </h3>
-        </RevealOnScroll>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-          {researchItems.map((item, index) => (
-            <RevealOnScroll key={item.title} delay={index * 150} className="h-full">
-              <div className="h-full rounded-[28px] border border-theme bg-[rgba(255,255,255,0.02)] p-8 md:p-10 transition-all duration-500 hover:border-theme hover:bg-[rgba(255,255,255,0.04)]">
-                <span className="text-[0.7rem] md:text-[0.75rem] font-bold tracking-[0.2em] uppercase text-theme-muted block mb-6 font-[family:var(--font-heading)]">
-                  0{index + 1} &mdash; {item.category}
-                </span>
-                <h4 className="text-2xl md:text-[2.2rem] leading-tight font-semibold tracking-[-0.03em] text-theme mb-5 font-[family:var(--font-heading)]">
-                  {item.title}
-                </h4>
-                <p className="text-theme-secondary leading-[1.7] text-base md:text-[1.05rem] font-light max-w-[42ch]">
-                  {item.desc}
-                </p>
-              </div>
-            </RevealOnScroll>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+// RESEARCH COMPONENT COMMENTED OUT
+// const Research = () => {
+//   const researchItems = [
+//     {
+//       title: 'ARC 2026',
+//       category: 'AI Systems',
+//       desc: 'A focused research track exploring advanced robotics and control systems for next-generation embodied intelligence.',
+//     },
+//     {
+//       title: 'Review paper on Aerogel based batteries',
+//       category: 'Energy Storage',
+//       desc: 'A review-oriented subsection covering aerogel-based battery architectures, material design, and performance directions.',
+//     },
+//   ];
+// 
+//   return (
+//     <section id="research" className="min-h-screen flex flex-col justify-center py-24 relative overflow-hidden">
+//       <div className="max-w-[1400px] mx-auto px-6 md:px-8 w-full relative">
+//         <RevealOnScroll>
+//           <div className="flex items-center gap-4 mb-12 md:mb-16">
+//             <div className="h-px w-[30px] bg-[var(--text-muted)]"></div>
+//             <span className="text-[0.65rem] md:text-[0.7rem] font-semibold tracking-[0.2em] uppercase text-theme-muted">02 &mdash; Research</span>
+//           </div>
+//         </RevealOnScroll>
+// 
+//         <RevealOnScroll>
+//           <h3 className="text-[clamp(2.2rem,6vw,4.5rem)] leading-[1.15] md:leading-[1.05] font-medium tracking-[-0.03em] text-theme transition-all duration-700 hover:tracking-[-0.01em] cursor-default mb-14 md:mb-20">
+//             Current research directions.
+//           </h3>
+//         </RevealOnScroll>
+// 
+//         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+//           {researchItems.map((item, index) => (
+//             <RevealOnScroll key={item.title} delay={index * 150} className="h-full">
+//               <div className="h-full rounded-[28px] border border-theme bg-[rgba(255,255,255,0.02)] p-8 md:p-10 transition-all duration-500 hover:border-theme hover:bg-[rgba(255,255,255,0.04)]">
+//                 <span className="text-[0.7rem] md:text-[0.75rem] font-bold tracking-[0.2em] uppercase text-theme-muted block mb-6 font-[family:var(--font-heading)]">
+//                   0{index + 1} &mdash; {item.category}
+//                 </span>
+//                 <h4 className="text-2xl md:text-[2.2rem] leading-tight font-semibold tracking-[-0.03em] text-theme mb-5 font-[family:var(--font-heading)]">
+//                   {item.title}
+//                 </h4>
+//                 <p className="text-theme-secondary leading-[1.7] text-base md:text-[1.05rem] font-light max-w-[42ch]">
+//                   {item.desc}
+//                 </p>
+//               </div>
+//             </RevealOnScroll>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
 
 const Contact = () => {
   return (
@@ -956,7 +961,7 @@ const App = () => {
         <Hero />
         <div className="bg-theme text-theme transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] w-full relative z-10 shadow-2xl">
           <Vision theme={theme} />
-          <Research />
+          {/* <Research /> */}
           <Contact />
         </div>
       </main>
